@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "book": {
+    "title": "Golden Jubilee 50th Anniversary E-Book",
+    "institution": "",
+    "batch": ""
+  },
+  "participants": [
+    {
+      "participant_id": "P-20260813-193819-u2MFRimk",
+      "name": "Pramit Dutta",
+      "nickname": "Dutta",
+      "branch": "Electrical",
+      "location": "Mumbai, India",
+      "education": "MSc Engineering",
+      "career": "CV expert",
+      "family": "",
+      "memory": "Loved the canteen",
+      "photos": {
+        "recent": {
+          "filename": "Pramit Profile Pic - Copy - Pramit Dutta.png",
+          "file_id": "1RLsonKzOG4c0dW7P8cqGi4p6NUE5FrhK",
+          "caption": ""
+        }
+      }
+    },
+    {
+      "participant_id": "P-20260813-194335-air0TU84",
+      "name": "majnu dada",
+      "nickname": "manu",
+      "branch": "Mechanical",
+      "location": "Bay Area, USA",
+      "education": "dwdwdwdw",
+      "career": "wqqwqwqw",
+      "family": "fdfdfdfdfd",
+      "memory": "ngngngngngng",
+      "photos": {
+        "recent": {
+          "filename": "random-person - Pramit Dutta.jpeg",
+          "file_id": "1wZeS1laEHdfuItAPgCbrem9YraXhDBkJ",
+          "caption": "ewewewe"
+        },
+        "then": {
+          "filename": "Catalog Snapshot - Pramit Dutta.png",
+          "file_id": "1sydjSQHMwWY_1OlfLePVOZ8ieZwwEhRb",
+          "caption": "dddwwwww"
+        },
+        "family": {
+          "filename": "download - Pramit Dutta.png",
+          "file_id": "1ebBYoHBhhe-HakbsXqVxYaupOBQ0V75E",
+          "caption": "vvccvcvcv"
+        },
+        "additional": {
+          "filename": "BS20 - Pramit Dutta.png",
+          "file_id": "17CA7w5HEKTobty_7KqtKmAuSuggakxGG",
+          "caption": "vcvcvvcvc"
+        }
+      }
+    },
+    {
+      "participant_id": "P-20260813-194608-6w4iem44",
+      "name": "chot chatri",
+      "nickname": "chotu",
+      "branch": "Physics",
+      "location": "antartica",
+      "education": "",
+      "career": "",
+      "family": "",
+      "memory": "",
+      "photos": {
+        "recent": {
+          "filename": "random-person (1) - Pramit Dutta.jpeg",
+          "file_id": "1Rns4YWos4_plAUnPnrhscOFuRv03IQJB",
+          "caption": ""
+        },
+        "then": {
+          "filename": "random-person (3) - Pramit Dutta.jpeg",
+          "file_id": "1n62Sv4eaC-g7_cC2wmOZ4Esyd0viuQBM",
+          "caption": "From kkl conference 1978"
+        }
+      }
+    },
+    {
+      "participant_id": "P-20260813-213037-hBkx5TsQ",
+      "name": "santa claus",
+      "nickname": "santu",
+      "branch": "Gifting",
+      "location": "NorthPole , Artic",
+      "education": "qwert",
+      "career": "ds",
+      "family": "",
+      "memory": "",
+      "photos": {
+        "recent": {
+          "filename": "random-person (2) - Pramit Dutta.jpeg",
+          "file_id": "1lzY2pUqP9ajvVQj2TE7iVbK7UE0kUygu",
+          "caption": "dsdsd"
+        },
+        "then": {
+          "filename": "unnamed (1) - Pramit Dutta.png",
+          "file_id": "1RTsEz79Xad7Bg-gSzx-1doWZQmzHd1dp",
+          "caption": ""
+        },
+        "family": {
+          "filename": "Picture1 - Pramit Dutta.png",
+          "file_id": "1s-O6P0t2ODl8EiV2v5VoTkdkbBxcqEpt",
+          "caption": "sasasasasqssqssq"
+        },
+        "additional": {
+          "filename": "Screenshot 2026-08-13 212855 - Pramit Dutta.jpg",
+          "file_id": "1KYlQ66SnSUKj-w60UD61OtkK8TOUjEIk",
+          "caption": "lololo"
+        }
+      }
+    }
+  ]
+}
