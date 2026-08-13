@@ -1,0 +1,19 @@
+{
+  "name": "golden-jubilee-ebook-demo",
+  "private": true,
+  "version": "0.4.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run sync:data && vite build",
+    "preview": "vite preview",
+    "sync:data": "node sync-data.mjs"
+  },
+  "dependencies": {
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "@vitejs/plugin-react": "latest"
+  },
+  "devDependencies": {}
+}
