@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-14T07:33:19.495Z",
+  "generated_at": "2026-08-14T07:44:56.533Z",
   "book": {
     "title": "Golden Jubilee 50th Anniversary E-Book",
     "institution": "",
@@ -127,6 +127,45 @@
           "caption": "lololo"
         }
       }
+    },
+    {
+      "participant_id": "P-20260814-131213-6nbZlic4",
+      "name": "Hari Prasad",
+      "nickname": "Harry",
+      "branch": "Chemical",
+      "location": "Kolkata, India",
+      "education": "Masters in Life Management followed by PhD, Computer Science",
+      "career": "Worked with HR, Recruiting and others in MNCs",
+      "family": "have 2 kids settled in USA. ",
+      "memory": "Loved the late night parties and library ",
+      "photos": {
+        "recent": {
+          "filename": "random-person (1) - Pramit Dutta.jpeg",
+          "file_id": "1iFSbR0IDQKeO8w1oSWWmqesYHIOeulsU",
+          "file_url": "/assets/P-20260814-131213-6nbZlic4/recent.jpg",
+          "caption": ""
+        },
+        "then": {
+          "filename": "random-person - Pramit Dutta.jpeg",
+          "file_id": "1aiEZfaMZr01xuNUOwvTwnEypoHIK4q0D",
+          "file_url": "/assets/P-20260814-131213-6nbZlic4/then.jpg",
+          "caption": "After Operation"
+        },
+        "family": {
+          "filename": "fammilty - Pramit Dutta.jfif",
+          "file_id": "1BmsCPYaP6WGmsg3uOKL7ScFXDrczPOCS",
+          "file_url": "/assets/P-20260814-131213-6nbZlic4/family.jpg",
+          "caption": ""
+        },
+        "additional": {
+          "filename": "college - Pramit Dutta.jfif",
+          "file_id": "1LMbV0dun2An2saaAtumPbhXLuO2QnIuB",
+          "file_url": "/assets/P-20260814-131213-6nbZlic4/additional.jpg",
+          "caption": ""
+        }
+      },
+      "email": "harry@info.in",
+      "phone": 7788225566
     }
   ]
 }
