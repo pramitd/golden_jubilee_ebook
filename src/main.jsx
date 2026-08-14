@@ -155,7 +155,117 @@ function ParticipantNav({participants,current,onNavigate}){
   );
 }
 
+
+function PdfBook({data}){
+  const pages = [];
+
+  pages.push(
+    <Cover
+      key="cover"
+      title="Golden Jubilee Anniversary E-Book"
+    />
+  );
+
+  pages.push(<Journey key="journey"/>);
+
+  (data.participants||[]).forEach((p,i)=>{
+    const profilePage=pages.length;
+
+    pages.push(
+      <Profile
+        key={p.participant_id+"p"}
+        p={p}
+        index={i}
+        n={profilePage+1}
+      />
+    );
+
+    if(Object.keys(p.photos||{}).some(k=>k!=="recent")){
+      pages.push(
+        <Memory
+          key={p.participant_id+"m"}
+          p={p}
+          n={pages.length+1}
+        />
+      );
+    }
+  });
+
+  pages.push(<Closing key="closing"/>);
+
+  return (
+    <>
+      <style>{`
+        @page {
+          size: 10in 6.6667in;
+          margin: 0;
+        }
+
+        html.pdf-document,
+        body.pdf-document,
+        #root.pdf-document {
+          width: 100%;
+          height: auto;
+          overflow: visible;
+          margin: 0;
+          padding: 0;
+        }
+
+        .pdf-export {
+          width: 10in;
+          margin: 0 auto;
+          background: #fff;
+        }
+
+        .pdf-page {
+          position: relative;
+          width: 10in;
+          height: 6.6667in;
+          overflow: hidden;
+          page-break-after: always;
+          break-after: page;
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+
+        .pdf-page:last-child {
+          page-break-after: auto;
+          break-after: auto;
+        }
+
+        .pdf-page .paper {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .pdf-page .page-no {
+          display: none;
+        }
+
+        .pdf-page .gallery-img,
+        .pdf-page img {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      `}</style>
+
+      <div className="pdf-export">
+        {pages.map((page,index)=>(
+          <div className="pdf-page" key={index}>
+            {page}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
 function App(){
+  const pdfMode =
+    new URLSearchParams(window.location.search).get("pdf") === "1";
+
   const [data,setData]=useState(null);
   const [current,setCurrent]=useState(0);
   const [turn,setTurn]=useState(null);
@@ -175,10 +285,22 @@ function App(){
 
   if(!data)return <div className="loading">Loading Golden Jubilee…</div>;
 
+  if(pdfMode){
+    document.title = data.book?.title
+      ? `${data.book.title} — PDF`
+      : "Golden Jubilee — PDF";
+
+    document.documentElement.classList.add("pdf-document");
+    document.body.classList.add("pdf-document");
+    document.getElementById("root")?.classList.add("pdf-document");
+
+    return <PdfBook data={data}/>;
+  }
+
   const pages=[];
   const profileIndex=[];
 
-  pages.push(<Cover key="cover" title={data.book?.title||'Golden Jubilee 50th Anniversary E-Book'}/>);
+  pages.push(<Cover key="cover" title={data.book?.title||'Golden Jubilee Anniversary E-Book'}/>);
   pages.push(<Journey key="journey"/>);
 
   (data.participants||[]).forEach((p,i)=>{
@@ -241,14 +363,8 @@ function App(){
     <div className="app">
       <header>
         <div>
-          <div className="kicker">GOLDEN JUBILEE • 50 YEARS</div>
-          <h1>{data.book?.title||'Golden Jubilee'}</h1>
+          <h1>Golden Jubilee Anniversary E-Book</h1>
         </div>
-        <nav>
-          <button onClick={()=>go(-1)} disabled={current===0||!!turn}>‹</button>
-          <span>{current+1} / {pages.length}</span>
-          <button onClick={()=>go(1)} disabled={current===pages.length-1||!!turn}>›</button>
-        </nav>
       </header>
 
       <div className="book-layout">
@@ -270,9 +386,27 @@ function App(){
         </main>
       </div>
 
+      <nav className="book-page-nav">
+        <button onClick={()=>go(-1)} disabled={current===0||!!turn}>‹</button>
+        <span>{current+1} / {pages.length}</span>
+        <button onClick={()=>go(1)} disabled={current===pages.length-1||!!turn}>›</button>
+      </nav>
+
       <footer>
         <span>Use the buttons or keyboard ← → to turn pages</span>
-        <span>{current===0?'Cover':current===pages.length-1?'Closing':'Golden Jubilee'}</span>
+
+        <div className="footer-right">
+          <span>Created and Maintained by Pramit Dutta — <a href="https://boroai.in" target="_blank" rel="noopener noreferrer">BoroAI.in</a></span>
+
+          <a
+            className="pdf-download"
+            href="/golden_jubilee_ebook.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ↓ PDF VERSION
+          </a>
+        </div>
       </footer>
     </div>
   );
