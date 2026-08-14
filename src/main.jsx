@@ -7,15 +7,33 @@ const TURN_MS=1250;
 function driveUrls(photo) {
   if (!photo) return [];
 
+  const urls = [];
+
+  /*
+   * PRIMARY:
+   * Published GitHub/Vercel asset.
+   */
+  if (photo.file_url) {
+    urls.push(photo.file_url);
+  }
+
+  /*
+   * FALLBACK:
+   * Google Drive thumbnail.
+   *
+   * Useful for older data / development.
+   */
   const id =
     photo.file_id ||
     (photo.file_url?.match(/[-\w]{20,}/)?.[0]);
 
-  if (!id) return [];
+  if (id) {
+    urls.push(
+      `https://drive.google.com/thumbnail?id=${id}&sz=w2000`
+    );
+  }
 
-  return [
-    `https://drive.google.com/thumbnail?id=${id}&sz=w2000`
-  ];
+  return [...new Set(urls)];
 }
 
 function Img({ photo, className = "", alt = "", onRatio }) {
