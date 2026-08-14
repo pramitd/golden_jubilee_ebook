@@ -16,4 +16,22 @@
 .memory-title .camera{position:absolute;right:0}
 .page-no b{background:var(--paper)}
 .gallery{height:calc(100% - 142px);min-height:0;}
-@media(max-width:850px){.memory-title h2{font-size:37px}}
+
+/* Participant navigation */
+.book-layout{display:flex;align-items:stretch;gap:18px;width:100%;max-width:1500px;margin:0 auto;min-height:0;flex:1}
+.participant-nav{width:210px;flex:0 0 210px;padding:18px 12px;border:1px solid rgba(120,100,70,.28);border-radius:10px;background:rgba(245,240,229,.92);box-sizing:border-box;overflow-y:auto}
+.participant-nav-title{font-size:12px;letter-spacing:.18em;font-weight:700;margin-bottom:14px;padding:0 8px 10px;border-bottom:1px solid rgba(120,100,70,.25)}
+.participant-list{display:flex;flex-direction:column;gap:4px}
+.participant-link{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 8px;border:0;border-radius:6px;background:transparent;text-align:left;cursor:pointer;font:inherit;color:var(--ink)}
+.participant-link:hover{background:rgba(120,100,70,.10)}
+.participant-link.active{background:rgba(120,100,70,.16)}
+.participant-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+.participant-page{flex:0 0 auto;font-size:11px;opacity:.65}
+.book-layout .stage{flex:1 1 auto;min-width:0}
+@media(max-width:850px){
+  .book-layout{gap:8px}
+  .participant-nav{width:155px;flex-basis:155px;padding:12px 7px}
+  .participant-nav-title{font-size:10px}
+  .participant-name{font-size:11px}
+  .participant-page{font-size:9px}
+}
