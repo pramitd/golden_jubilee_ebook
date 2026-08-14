@@ -1,5 +1,6 @@
 {
   "schema_version": "1.0",
+  "generated_at": "2026-08-14T06:26:17.549Z",
   "book": {
     "title": "Golden Jubilee 50th Anniversary E-Book",
     "institution": "",
@@ -12,7 +13,7 @@
       "nickname": "Dutta",
       "branch": "Electrical",
       "location": "Mumbai, India",
-      "education": "MSc Engineering",
+      "education": "MSc Engineering ",
       "career": "CV expert",
       "family": "",
       "memory": "Loved the canteen",
@@ -20,6 +21,7 @@
         "recent": {
           "filename": "Pramit Profile Pic - Copy - Pramit Dutta.png",
           "file_id": "1RLsonKzOG4c0dW7P8cqGi4p6NUE5FrhK",
+          "file_url": "https://drive.google.com/file/d/1RLsonKzOG4c0dW7P8cqGi4p6NUE5FrhK/view?usp=drivesdk",
           "caption": ""
         }
       }
@@ -38,24 +40,30 @@
         "recent": {
           "filename": "random-person - Pramit Dutta.jpeg",
           "file_id": "1wZeS1laEHdfuItAPgCbrem9YraXhDBkJ",
+          "file_url": "https://drive.google.com/file/d/1wZeS1laEHdfuItAPgCbrem9YraXhDBkJ/view?usp=drivesdk",
           "caption": "ewewewe"
         },
         "then": {
           "filename": "Catalog Snapshot - Pramit Dutta.png",
           "file_id": "1sydjSQHMwWY_1OlfLePVOZ8ieZwwEhRb",
+          "file_url": "https://drive.google.com/file/d/1sydjSQHMwWY_1OlfLePVOZ8ieZwwEhRb/view?usp=drivesdk",
           "caption": "dddwwwww"
         },
         "family": {
           "filename": "download - Pramit Dutta.png",
           "file_id": "1ebBYoHBhhe-HakbsXqVxYaupOBQ0V75E",
+          "file_url": "https://drive.google.com/file/d/1ebBYoHBhhe-HakbsXqVxYaupOBQ0V75E/view?usp=drivesdk",
           "caption": "vvccvcvcv"
         },
         "additional": {
           "filename": "BS20 - Pramit Dutta.png",
           "file_id": "17CA7w5HEKTobty_7KqtKmAuSuggakxGG",
+          "file_url": "https://drive.google.com/file/d/17CA7w5HEKTobty_7KqtKmAuSuggakxGG/view?usp=drivesdk",
           "caption": "vcvcvvcvc"
         }
-      }
+      },
+      "email": "aaa@ffd.com",
+      "phone": 1515151
     },
     {
       "participant_id": "P-20260813-194608-6w4iem44",
@@ -71,14 +79,17 @@
         "recent": {
           "filename": "random-person (1) - Pramit Dutta.jpeg",
           "file_id": "1Rns4YWos4_plAUnPnrhscOFuRv03IQJB",
+          "file_url": "https://drive.google.com/file/d/1Rns4YWos4_plAUnPnrhscOFuRv03IQJB/view?usp=drivesdk",
           "caption": ""
         },
         "then": {
           "filename": "random-person (3) - Pramit Dutta.jpeg",
           "file_id": "1n62Sv4eaC-g7_cC2wmOZ4Esyd0viuQBM",
+          "file_url": "https://drive.google.com/file/d/1n62Sv4eaC-g7_cC2wmOZ4Esyd0viuQBM/view?usp=drivesdk",
           "caption": "From kkl conference 1978"
         }
-      }
+      },
+      "email": "qqw@wer.com"
     },
     {
       "participant_id": "P-20260813-213037-hBkx5TsQ",
@@ -94,21 +105,25 @@
         "recent": {
           "filename": "random-person (2) - Pramit Dutta.jpeg",
           "file_id": "1lzY2pUqP9ajvVQj2TE7iVbK7UE0kUygu",
+          "file_url": "https://drive.google.com/file/d/1lzY2pUqP9ajvVQj2TE7iVbK7UE0kUygu/view?usp=drivesdk",
           "caption": "dsdsd"
         },
         "then": {
           "filename": "unnamed (1) - Pramit Dutta.png",
           "file_id": "1RTsEz79Xad7Bg-gSzx-1doWZQmzHd1dp",
+          "file_url": "https://drive.google.com/file/d/1RTsEz79Xad7Bg-gSzx-1doWZQmzHd1dp/view?usp=drivesdk",
           "caption": ""
         },
         "family": {
           "filename": "Picture1 - Pramit Dutta.png",
           "file_id": "1s-O6P0t2ODl8EiV2v5VoTkdkbBxcqEpt",
+          "file_url": "https://drive.google.com/file/d/1s-O6P0t2ODl8EiV2v5VoTkdkbBxcqEpt/view?usp=drivesdk",
           "caption": "sasasasasqssqssq"
         },
         "additional": {
           "filename": "Screenshot 2026-08-13 212855 - Pramit Dutta.jpg",
           "file_id": "1KYlQ66SnSUKj-w60UD61OtkK8TOUjEIk",
+          "file_url": "https://drive.google.com/file/d/1KYlQ66SnSUKj-w60UD61OtkK8TOUjEIk/view?usp=drivesdk",
           "caption": "lololo"
         }
       }
