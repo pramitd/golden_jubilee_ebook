@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-14T14:18:41.757Z",
+  "generated_at": "2026-08-14T17:24:23.936Z",
   "book": {
     "title": "Golden Jubilee 50th Anniversary E-Book",
     "institution": "",
@@ -232,6 +232,38 @@
       },
       "email": "laal@bahadur.com",
       "phone": 9632587411
+    },
+    {
+      "participant_id": "P-20260814-224918-mx1eUQ8I",
+      "name": "Raj Kumar",
+      "nickname": "Raju",
+      "branch": "Mechanical",
+      "location": "Bangalore, India",
+      "education": "PhD - Aerospace, Masters - Design",
+      "career": "Working at Airbus since 1980",
+      "family": "Happy married for 30 years. Have 2 kids. They live in the US. ",
+      "memory": "I loved the badminton court and plays in the evenings. ",
+      "photos": {
+        "recent": {
+          "filename": "rajKumar - Pramit Dutta.jpeg",
+          "file_id": "19E_AaYafuykvkSm-JeHgaYjLVW1gVisL",
+          "file_url": "/assets/P-20260814-224918-mx1eUQ8I/recent.jpg",
+          "caption": ""
+        },
+        "then": {
+          "filename": "rajKumar_1974 - Pramit Dutta.jpeg",
+          "file_id": "1gGxlycN5k79qU0tgqGIe1eNu__F9cJW_",
+          "file_url": "/assets/P-20260814-224918-mx1eUQ8I/then.jpg",
+          "caption": "From Lab -1 in 1970"
+        },
+        "family": {
+          "filename": "raj_vacation - Pramit Dutta.jfif",
+          "file_id": "1jt2vquwdqRIrXKBAkToRjgNy0YaNoPiE",
+          "file_url": "/assets/P-20260814-224918-mx1eUQ8I/family.jpg",
+          "caption": "At Hawaii in 2023"
+        }
+      },
+      "email": "raj@kumar.com"
     }
   ]
 }
