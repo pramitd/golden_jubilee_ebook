@@ -10,10 +10,13 @@
     "sync:data": "node sync-data.mjs"
   },
   "dependencies": {
-    "vite": "latest",
+    "@vitejs/plugin-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "@vitejs/plugin-react": "latest"
+    "vite": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "playwright": "^1.62.1",
+    "wait-on": "^9.1.0"
+  }
 }
