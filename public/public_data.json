@@ -1,10 +1,162 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-30T07:54:54.454Z",
+  "generated_at": "2026-08-30T07:58:08.595Z",
   "book": {
     "title": "Golden Jubilee 50th Anniversary E-Book",
     "institution": "",
     "batch": ""
   },
-  "participants": []
+  "participants": [
+    {
+      "participant_id": "P-20260830-121227-GwTPsAXA",
+      "name": "as",
+      "nickname": "qw",
+      "branch": "vv",
+      "location": "dwdwdddw",
+      "education": "cdcdccd",
+      "career": "jdjwqndkqjwdnqkdnqd",
+      "family": "kmqwdkdmqlkdmqlkd",
+      "memory": ",m;dqlml;wmdq",
+      "photos": {
+        "recent": {
+          "filename": "Screenshot 2026-08-30 at 1.35.00 AM - Pramit Dutta.png",
+          "file_id": "1SF9__Ax0sK2-RVNXfV-VlOU7erp1Pa2J",
+          "file_url": "/assets/P-20260830-121227-GwTPsAXA/recent.png",
+          "caption": ""
+        },
+        "then": {
+          "filename": "Screenshot 2026-08-29 at 12.47.40 AM - Pramit Dutta.png",
+          "file_id": "1ttVgACqUtF1FVgcSTZ4jjEcZ62_NYP7T",
+          "file_url": "/assets/P-20260830-121227-GwTPsAXA/then.png",
+          "caption": "ddwdwd"
+        },
+        "family": {
+          "filename": "Screenshot 2026-08-29 at 12.48.00 AM - Pramit Dutta.png",
+          "file_id": "1gD94qeeTSFr_bJAjpO3mlkpOHVrxZSqW",
+          "file_url": "/assets/P-20260830-121227-GwTPsAXA/family.png",
+          "caption": "gbgbgbgb"
+        }
+      },
+      "email": "as@df.com",
+      "phone": 323414
+    },
+    {
+      "participant_id": "P-20260830-121615-62SBIn7Q",
+      "name": "B.K. Dutta",
+      "nickname": "",
+      "branch": 12344,
+      "location": "qwe,fg",
+      "education": "vwevmkmwevwvwpovnw",
+      "career": "wvmwvweovmwep",
+      "family": "mvwevmevmwkve",
+      "memory": "",
+      "photos": {
+        "recent": {
+          "filename": "Screenshot 2026-08-29 at 12.48.00 AM - B.K. Dutta.png",
+          "file_id": "1aVpqO1CDlhZK-fjmDq7v7O2Z1ASKvS1q",
+          "file_url": "/assets/P-20260830-121615-62SBIn7Q/recent.png",
+          "caption": ""
+        }
+      },
+      "email": "bijon5dec@gmail.com",
+      "phone": "ddwdwdwd"
+    },
+    {
+      "participant_id": "P-20260830-124125-bfKGMKlA",
+      "name": "Naveen Rastogi",
+      "nickname": "Hero",
+      "branch": "Robotics ",
+      "location": "Bangkok",
+      "education": "Sabse top ",
+      "career": "Iiiiiittttttttttt",
+      "family": "Family",
+      "memory": "Top secret",
+      "photos": {
+        "recent": {
+          "filename": "image - Members-Polaris Celestia.jpg",
+          "file_id": "1t3__hXQymVDg4VmV8WDaB34hk2sTkNZD",
+          "file_url": "/assets/P-20260830-124125-bfKGMKlA/recent.jpg",
+          "caption": ""
+        },
+        "then": {
+          "filename": "image - Members-Polaris Celestia.jpg",
+          "file_id": "1ynpOowrw3yV1JDFa0bV_RpBGWoPC1gP9",
+          "file_url": "/assets/P-20260830-124125-bfKGMKlA/then.jpg",
+          "caption": "Heheheh"
+        },
+        "family": {
+          "filename": "image - Members-Polaris Celestia.jpg",
+          "file_id": "1GggfmkImoO2w6DRAziQ2FveUASIzxFWB",
+          "file_url": "/assets/P-20260830-124125-bfKGMKlA/family.jpg",
+          "caption": ""
+        }
+      },
+      "email": "rastogi.ipr1@gmail.com",
+      "phone": 99219999911
+    },
+    {
+      "participant_id": "P-20260830-124443-E5ky3Csg",
+      "name": "G B",
+      "nickname": "Baba",
+      "branch": "Extraordinary ",
+      "location": "Sky",
+      "education": "Pd Dr",
+      "career": "Very good",
+      "family": "Superb",
+      "memory": "Zakkas",
+      "photos": {
+        "recent": {
+          "filename": "Screenshot_20260829-154943 - Govind Lokhande.png",
+          "file_id": "1mvqcnKl43BiUQvXdSIW6lIsh8As06tmC",
+          "file_url": "/assets/P-20260830-124443-E5ky3Csg/recent.png",
+          "caption": ""
+        },
+        "then": {
+          "filename": "IMG_20260828_231437811 - Govind Lokhande.jpg",
+          "file_id": "13jyqPYiKt2kgnXou5GdausNDs8O24UJg",
+          "file_url": "/assets/P-20260830-124443-E5ky3Csg/then.jpg",
+          "caption": "Mast"
+        }
+      }
+    },
+    {
+      "participant_id": "P-20260830-131423-RFowao5w",
+      "name": "Bijan Dutta",
+      "nickname": "Bijon",
+      "branch": "Mechanical",
+      "location": "New Mumbai, India",
+      "education": "B.E. (NIT Raipur), M.Tech. (IIT Kanpur) & Ph.D. (IIT, Raipur)",
+      "career": "Dr. B.K. Dutta graduated from NIT Raipur, completed his postgraduate studies at IIT Kanpur, and earned his doctoral degree from IIT Bombay. During his 46-year career with DAE, he served in various Scientific-Officer grades, including as Distinguished Scientist. He also held several prominent positions, including Head of the HRD Division at BARC; VC(O), Senior Professor, Dean, and Chairman of the Board of Studies at HBNI; and Raja Ramanna Fellow and Institute Chair Professor at DAE. He was a visiting scientist at MPa Stuttgart and a visiting professor at Ohio State University. He represented India at the IAEA and other international meetings on nuclear safety. Dr. Dutta brings extensive experience as a researcher, academician, and engineering practitioner.\n\tDr. Dutta has published more than 300 research papers, including over 130 peer-reviewed articles in international journals, and has guided thirteen PhD and fifteen M.Tech. students. He edited a book published worldwide by Taylor & Francis (UK) and authored several book chapters, including one published by WIT Press (UK). He was invited to edit two special issues published by the Indian Academy of Sciences and the International Journal of Nuclear Engineering and Design and serves on the editorial boards of several journals.\nDr. Dutta is an internationally recognized expert in nuclear structural safety. He is a former president and current lifetime advisory board member of the International Association for Structural Mechanics in Reactor Technology (USA). He has served as chairperson and member of several selection boards for DAE, IITs, and the Ministry of Defence. He is a life member of the Indian Nuclear Society and the Indian Association for Computational Mechanics. His honors include the DAE Technical Excellence Award, the DAE Homi Bhabha Award for Science and Technology, the HBNI Distinguished Faculty Award, the NIT Raipur Lifetime Achievement Award, and recognition as an AICTE-designated Distinguished Professional. He has been a Fellow of the Indian National Academy of Engineering (INAE) since 2004.\n",
+      "family": "I married Smt. Gopa Dutta on 27th February 1985. She holds master's and B.Ed. degrees and worked as a teacher in New Mumbai after our marriage. She later left teaching to focus on caring for our family as a homemaker. We have two children, Pramit and Prapti; both are engineers with master’s degrees. Pramit joined the Institute for Plasma Research, a DAE unit, where he worked for ten years on ITER project, the International Thermonuclear Experimental Reactor. He later moved to Europe to work in Maynooth. Presently, he is employed by a multinational company in India to work in the area of machine learning and AI. After completing her B.Tech., Prapti moved to the USA and earned her MS from NC State University. She later joined Advanced Micro Devices (AMD) as an MTS Silicon Design Engineer and is now settled in California. Both Pramit and Prapti are married.",
+      "memory": "The very first day I visited our college campus for admission alone, there were many forms that needed to be signed by parent/guardian. I filled these forms, signing myself on behalf of my father. It worked everywhere, except NCC. Mr. Dave, who was NCC in charge, asked me, \"Whose signature is this?\" I said, \"My Father's.\" Then he asked, \"Who has signed?\" I said, \"me\". Then he said, \"Abhi tak admission bhi nahi liya aur cheating start kar dia.  Go and take the signature of anybody as your guardian\". There was a person who accompanied Saibal. I requested him to sign, and he readily agreed. That was the first time I got introduced to Saibal.",
+      "photos": {
+        "recent": {
+          "filename": "bkd-ipr1-3 - Bijan Dutta.jpg",
+          "file_id": "1iOrx7pKKc3_3cpVaaINu3_JTPvWDwXNM",
+          "file_url": "/assets/P-20260830-131423-RFowao5w/recent.jpg",
+          "caption": ""
+        },
+        "then": {
+          "filename": "0 (28) - Bijan Dutta.JPG",
+          "file_id": "1ep_sbM0yBlUOS5mzmlxyGejJKh_bNpYv",
+          "file_url": "/assets/P-20260830-131423-RFowao5w/then.jpg",
+          "caption": "A photograph with Dr. A.P.J. Kalam and Dr. S. Banerjee taken in Ashoka Hotel, New Delhi, when I chaired a very prestigious international conference on safety of nuclear reactors. "
+        },
+        "family": {
+          "filename": "Dutta Family E-Book - Bijan Dutta.jpg",
+          "file_id": "1rv9Yk9pN9VqF1sN9kgQ0pa7X1LuoPTJa",
+          "file_url": "/assets/P-20260830-131423-RFowao5w/family.jpg",
+          "caption": "From left: Wife Gopa, Daughter Prapti, Me and Son Pramit"
+        },
+        "additional": {
+          "filename": "a60a457d-ecf2-42ed-82b5-22ca781d28e3 - Bijan Dutta.JPG",
+          "file_id": "1rSZa5qjhR7GdAYP2V1UdR0uGPg-ZdZOM",
+          "file_url": "/assets/P-20260830-131423-RFowao5w/additional.jpg",
+          "caption": "Son-in-law Sunny De and daughter Prapti"
+        }
+      },
+      "email": "bijon.dutta@gmail.com",
+      "phone": 9757000363
+    }
+  ]
 }
