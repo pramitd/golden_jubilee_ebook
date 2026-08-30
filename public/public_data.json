@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-30T07:58:08.595Z",
+  "generated_at": "2026-08-30T08:48:09.803Z",
   "book": {
     "title": "Golden Jubilee 50th Anniversary E-Book",
     "institution": "",
@@ -157,6 +157,65 @@
       },
       "email": "bijon.dutta@gmail.com",
       "phone": 9757000363
+    },
+    {
+      "participant_id": "P-20260830-134011-zLpx9F7w",
+      "name": "RAVI RANJAN TIWARI",
+      "nickname": "Gandhi",
+      "branch": "Mechanical ",
+      "location": "Gandhinagar, India ",
+      "education": "B.E",
+      "career": "Currently working as Scientific officer under DAE",
+      "family": "I live in combined family and i love this. ",
+      "memory": "Seating at PMC chauk with friends ",
+      "photos": {
+        "recent": {
+          "filename": "PXL_20240920_131614848 - RAVI RANJAN TIWARI.jpg",
+          "file_id": "1nmSNCkiIHQhi6PiR0R45SsROfEXVcfcc",
+          "file_url": "/assets/P-20260830-134011-zLpx9F7w/recent.jpg",
+          "caption": ""
+        },
+        "then": {
+          "filename": "PXL_20250713_102732426 - RAVI RANJAN TIWARI.jpg",
+          "file_id": "14Cb_Dfuc4-YH5HD89XJ_EeMiaLMN8E9T",
+          "file_url": "/assets/P-20260830-134011-zLpx9F7w/then.jpg",
+          "caption": "With my wife and kids"
+        },
+        "family": {
+          "filename": "PXL_20250727_024529725 - RAVI RANJAN TIWARI.jpg",
+          "file_id": "1crSuN_-uuPAPfCwFbRPDkGDWSlzm5zql",
+          "file_url": "/assets/P-20260830-134011-zLpx9F7w/family.jpg",
+          "caption": "Family visit to mata vaishno devi "
+        },
+        "additional": {
+          "filename": "PXL_20260126_041113189 - RAVI RANJAN TIWARI.jpg",
+          "file_id": "1_ZNM66KWC0SBnpzNbY8Xpa_aDEly81eA",
+          "file_url": "/assets/P-20260830-134011-zLpx9F7w/additional.jpg",
+          "caption": "Republic day celebration at my office with father and children "
+        }
+      },
+      "email": "raviranjantiwari08@gmail.com",
+      "phone": 9429379057
+    },
+    {
+      "participant_id": "P-20260830-134539-t8b8rHkg",
+      "name": "Samiran Mukherjee ",
+      "nickname": "Sam Baba",
+      "branch": "Physics ",
+      "location": "Ahmedabad ",
+      "education": "Master's ",
+      "career": "Working as a scientific officer and mostly deals with ultra high vacuum and cryogenic applications.",
+      "family": "Sweet family ",
+      "memory": "Picnic on every 25th December in the bank of river.",
+      "photos": {
+        "recent": {
+          "filename": "20260828_142343 - Samiran Mukherjee.jpg",
+          "file_id": "1LXH-eTKHfZtv4tNFe2xdPgRyzxyQFnXB",
+          "file_url": "/assets/P-20260830-134539-t8b8rHkg/recent.jpg",
+          "caption": ""
+        }
+      },
+      "email": "samiran.ipr1@gmail.com"
     }
   ]
 }
