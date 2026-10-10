@@ -1,286 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
-:root{--forest:#405847;--deep:#293b30;--ink:#363b36;--muted:#74786f;--paper:#fbf8ef;--gold:#b08b4e;--line:#d8ccb7;--terr:#9b6b58}
-*{box-sizing:border-box}html,body,#root{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 18% 10%,#fffdf7e8,transparent 32%),linear-gradient(135deg,#c8d4c7,#eee8dc 50%,#c4d0c2)}
-.app{position:relative;height:100%;width:min(1250px,100%);margin:auto;padding:17px 22px 9px;display:flex;flex-direction:column}header{display:flex;justify-content:space-between;align-items:flex-end;flex:0 0 auto}header h1{margin:4px 0 0;font:500 40px/.9 'Cormorant Garamond',Georgia,serif;color:var(--deep)}.kicker{font-size:9px;letter-spacing:.19em;color:var(--forest);font-weight:600;text-transform:uppercase}nav{display:flex;align-items:center;gap:11px}nav button{width:40px;height:40px;border-radius:50%;border:1px solid #879488;background:#f8f3e8;color:var(--deep);font-size:28px;cursor:pointer}nav button:disabled{opacity:.35}nav span{font-size:11px;color:var(--muted);min-width:58px;text-align:center}
-.stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:9px 0}.book{position:relative;width:min(960px,92vw);aspect-ratio:3/2;max-height:calc(100vh - 125px);background:#ded8ca;box-shadow:0 30px 75px #35403755;border-radius:3px;perspective:2400px}.page-layer{position:absolute;inset:0;overflow:hidden}.page-layer.base{z-index:1}.page-layer.turn{z-index:3;transform-style:preserve-3d;backface-visibility:hidden}.page-layer.turn.next{transform-origin:left center;animation:nextTurn 1.25s cubic-bezier(.2,.7,.18,1) forwards}.page-layer.turn.prev{transform-origin:right center;animation:prevTurn 1.25s cubic-bezier(.2,.7,.18,1) forwards}@keyframes nextTurn{0%{transform:rotateY(0);box-shadow:0 0 0 #0000}42%{box-shadow:14px 0 25px #26352d40}100%{transform:rotateY(-180deg);box-shadow:0 0 0 #0000}}@keyframes prevTurn{0%{transform:rotateY(0);box-shadow:0 0 0 #0000}42%{box-shadow:-14px 0 25px #26352d40}100%{transform:rotateY(180deg);box-shadow:0 0 0 #0000}}
-.paper{position:absolute;inset:0;background:var(--paper);overflow:hidden;border:1px solid #d7cdbb}.paper:before{content:"";position:absolute;inset:10px;border:1px solid #b08b4e55;pointer-events:none;z-index:20}.inner{position:absolute;inset:0;padding:39px 54px 32px}.topline{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:9px;color:var(--forest);font-size:8px;letter-spacing:.18em;font-weight:600;text-transform:uppercase}.rule{height:1px;background:var(--line);margin:4px 0 8px}.goldline{height:1px;background:#cdbd9f;position:relative;margin:17px 0}.goldline span{position:absolute;left:50%;top:-9px;transform:translateX(-50%);padding:0 10px;background:var(--paper);color:var(--gold)}.goldline.small{width:68px;background:var(--gold)}
-/* profile */.profile .inner{padding:39px 54px 34px}.profile-hero{display:grid;grid-template-columns:215px 1fr;gap:34px;align-items:center;padding:25px 0 18px}.portrait-frame{width:190px;height:190px;position:relative;display:grid;place-items:center}.portrait{width:166px;height:166px;border-radius:50%;object-fit:cover;border:6px solid #f6f0e4;box-shadow:0 10px 25px #354b3a22}.ring{position:absolute;inset:7px;border:1px solid var(--gold);border-radius:50%}.photo-fallback{display:grid;place-items:center;text-align:center;background:#e5e1d6;color:#777b72;font-size:8px;letter-spacing:.1em}.portrait-frame .photo-fallback{width:166px;height:166px;border-radius:50%;border:6px solid #f6f0e4}.identity h2{margin:0 0 7px;font:500 44px/.9 'Cormorant Garamond',Georgia,serif;color:var(--ink)}.nickname{font:500 20px 'Cormorant Garamond',Georgia,serif;color:#a07736;margin-bottom:13px}.identity-row{display:flex;gap:11px;align-items:center;margin:6px 0;color:#50574f;font:17px 'Cormorant Garamond',Georgia,serif}.identity-row i{font-style:normal;color:var(--forest);font-size:9px}.fields>div{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid #ddd4c4;padding:10px 0}.fields strong{font-size:9px;letter-spacing:.15em;color:var(--forest)}.fields span{font:16px/1.3 'Cormorant Garamond',Georgia,serif;color:#464b45}.memory{margin-top:16px;background:#e2e6dc;border-left:3px solid var(--terr);padding:11px 17px;display:flex;gap:7px;align-items:center;color:#4d514b;font:italic 17px/1.25 'Cormorant Garamond',Georgia,serif}.memory b{font-size:27px;color:#6d806e}.page-no{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:8px;align-items:center;color:var(--gold);font-size:10px}.page-no b{width:29px;height:29px;border:1px solid #c4a66f;border-radius:50%;display:grid;place-items:center;color:var(--forest);font-weight:500}
-/* memory */.memory-title{display:flex;justify-content:space-between;align-items:end;margin-top:9px}.memory-title h2{margin:3px 0 0;color:var(--deep);font:500 44px/.92 'Cormorant Garamond',Georgia,serif}.camera{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:#a47d3f}.gallery{height:calc(100% - 128px);display:flex;flex-direction:column;gap:12px;overflow:hidden}.gallery-row{display:flex;gap:12px;min-height:0;width:100%}.gallery-row figure{position:relative;min-width:0;min-height:0;margin:0;border:6px solid white;background:#e7e2d7;box-shadow:0 8px 20px #39413820;overflow:hidden;display:flex;flex-direction:column}.gallery-img{width:100%;height:auto;min-height:0;flex:1 1 auto;display:block;object-fit:contain;background:#e7e2d7}.gallery-row figcaption{flex:0 0 auto;padding:4px 4px 2px;background:var(--paper);color:#4f554d;font:italic 14px 'Cormorant Garamond',Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* cover/journey */.cover{background:linear-gradient(135deg,#294233,#6c8069 65%,#b89a5e);color:white}.cover-art{position:absolute;right:0;bottom:0;width:56%;height:72%;background:radial-gradient(ellipse at 55% 55%,#e4d8bb66,transparent 62%),linear-gradient(145deg,transparent 50%,#253b2e 50%);opacity:.85}.cover-text{position:absolute;left:72px;bottom:70px;width:55%;z-index:2}.cover h2{font:500 59px/.86 'Cormorant Garamond',Georgia,serif;margin:14px 0;color:#fff}.cover p{font:17px/1.4 'Cormorant Garamond',Georgia,serif;max-width:360px;color:#eee7d8}.cover .kicker{color:#eee7d8}.cover .goldline{background:#d0af6d}.journey{background:linear-gradient(145deg,#f5efe2,#e1e8df)}.journey-art{position:absolute;inset:0;background:radial-gradient(circle at 78% 82%,#667d6766,transparent 30%),radial-gradient(circle at 10% 30%,#c6a96a33,transparent 28%)}.journey-content{position:absolute;inset:0;padding:86px 90px}.journey h2{font:500 57px/.88 'Cormorant Garamond',Georgia,serif;color:var(--deep);margin:14px 0}.journey h2 em{font-style:italic}.journey p{width:46%;font:italic 18px/1.45 'Cormorant Garamond',Georgia,serif;color:#565d54}.fifty{position:absolute;right:85px;bottom:70px;color:var(--gold);font:500 140px/.6 'Cormorant Garamond',Georgia,serif}.journey strong{position:absolute;right:75px;bottom:39px;color:var(--deep);font-size:10px;letter-spacing:.15em;text-align:center}
-.closing{background:linear-gradient(145deg,#dfe7dc,#f2e6cf)}.closing>div{height:100%;display:flex;flex-direction:column;justify-content:center;padding:85px}.closing h2{font:500 58px/.88 'Cormorant Garamond',Georgia,serif;color:var(--deep);margin:15px 0}.loading{height:100%;display:grid;place-items:center;font:24px 'Cormorant Garamond',Georgia,serif;color:var(--forest)}footer{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted);padding:0 3px;gap:20px}
-.footer-actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;min-width:0}
-.pdf-button{border:1px solid var(--gold);background:rgba(251,248,239,.88);color:var(--forest);border-radius:16px;padding:5px 11px;font:600 9px Inter,Arial,sans-serif;letter-spacing:.08em;cursor:pointer}
-.pdf-button:hover{background:#f2eadb}
-@media(max-width:850px){header h1{font-size:32px}.app{padding:12px}.book{width:96vw}.inner{padding-left:38px;padding-right:38px}.profile-hero{grid-template-columns:170px 1fr;gap:20px}.portrait-frame{width:150px;height:150px}.portrait,.portrait-frame .photo-fallback{width:130px;height:130px}.identity h2{font-size:36px}.memory-title h2{font-size:37px}}
-/* V4 editorial corrections */
-.memory-topline{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:9px;color:var(--forest);font-size:8px;letter-spacing:.18em;font-weight:600;text-transform:uppercase}
-.memory-title{display:flex;justify-content:center;align-items:center;position:relative;margin-top:14px;min-height:70px}
-.memory-title h2{margin:0;text-align:center;color:var(--deep);font:500 44px/.95 'Cormorant Garamond',Georgia,serif}
-.memory-title .camera{position:absolute;right:0}
-.page-no b{background:var(--paper)}
-.gallery{height:calc(100% - 142px);min-height:0;}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{--emerald:#0d493b;--emerald-deep:#08372e;--emerald-mid:#1e6552;--gold:#c8a45d;--gold-light:#ead8a8;--ink:#27342d;--muted:#6c756d;--paper:#fbf7ec;--paper2:#f1e8d5;--line:#d9c9a7;--shadow:0 24px 70px #061d1640}*{box-sizing:border-box}html,body,#root{margin:0;min-height:100%;width:100%}body{font-family:Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 20% 0%,#f4ead2 0,#d8dfd2 34%,#c3d0c5 100%)}button,a{font:inherit}.app-shell{min-height:100vh;max-width:1680px;margin:auto;padding:24px 34px 15px;display:flex;flex-direction:column}.site-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 0 17px;border-bottom:1px solid #8d9b8c80}.site-kicker,.section-kicker,.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--emerald-mid)}.site-header h1{font:500 clamp(28px,3vw,43px)/.95 'Cormorant Garamond',Georgia,serif;color:var(--emerald-deep);margin:6px 0 0}.site-header h1 span{color:#a17c38}.header-actions{display:flex;gap:9px;flex-wrap:wrap}.header-actions a{border:1px solid var(--gold);padding:11px 14px;text-decoration:none;color:var(--emerald);font-size:10px;font-weight:700;letter-spacing:.1em;background:#fffaf0c9}.header-actions a:hover{background:var(--emerald);color:#fff7e7}.reader-layout{display:flex;gap:25px;align-items:center;justify-content:center;flex:1;min-height:0;padding:18px 0}.contents{width:205px;max-height:min(710px,75vh);overflow:auto;flex:0 0 205px;background:#f8f3e8d9;border:1px solid #b5a57f;border-radius:3px;padding:15px 10px;box-shadow:0 8px 30px #28443812}.contents-title{padding:3px 8px 12px;border-bottom:1px solid var(--line);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--emerald);margin-bottom:7px}.contents button{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;padding:9px 8px;border:0;border-bottom:1px solid #d9c9a733;background:transparent;text-align:left;color:#36463b;cursor:pointer;font-size:11px}.contents button span{font-size:9px;color:#9c7b3c;flex-shrink:0}.contents button:hover,.contents button.selected{background:#e6eadf;color:var(--emerald-deep)}.stage{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.book{position:relative;width:min(800px,100%);aspect-ratio:210/297;max-height:calc(100vh - 180px);box-shadow:var(--shadow);perspective:2000px;background:var(--paper);border:1px solid #bda873}.page-layer{position:absolute;inset:0;overflow:hidden}.page-layer.base{z-index:1}.page-layer.turn{z-index:3;transform-style:preserve-3d;backface-visibility:hidden}.page-layer.turn.next{transform-origin:left center;animation:turnNext .72s ease-in-out forwards}.page-layer.turn.prev{transform-origin:right center;animation:turnPrev .72s ease-in-out forwards}@keyframes turnNext{0%{transform:rotateY(0)}100%{transform:rotateY(-180deg)}}@keyframes turnPrev{0%{transform:rotateY(0)}100%{transform:rotateY(180deg)}}.paper{width:100%;height:100%;position:relative;overflow:hidden;background:var(--paper);color:var(--ink)}.paper-frame{position:relative;width:100%;height:100%;padding:7.2% 8% 8.5%;overflow:hidden}.folio{position:absolute;bottom:2.4%;left:8%;right:8%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:8px;color:#7d765f;font-size:7px;letter-spacing:.14em}.folio-number{position:absolute;left:50%;transform:translateX(-50%);font-size:9px;color:var(--emerald);letter-spacing:.06em}.folio a{color:var(--emerald);text-decoration:none;font-weight:700;letter-spacing:.1em}.cover-page{background:linear-gradient(145deg,#073a30,#0d5141 48%,#17614e);color:#fff7e5}.cover-page:before{content:'';position:absolute;inset:3%;border:1px solid #d6b66c}.cover-page:after{content:'';position:absolute;width:75%;aspect-ratio:1;right:-26%;top:4%;border:1px solid #d7b66b55;border-radius:50%;box-shadow:0 0 0 22px #d7b66b0d,0 0 0 52px #d7b66b0b}.cover-page .paper-frame{padding:13% 11% 10%;display:flex;align-items:center;justify-content:center}.cover-inner{text-align:center;position:relative;z-index:1;width:100%}.seal{width:90px;height:90px;border:1px solid var(--gold);outline:1px solid #d5b56c77;outline-offset:6px;border-radius:50%;margin:0 auto 32px;display:grid;place-items:center;font:500 50px/.8 'Cormorant Garamond',serif;color:var(--gold-light)}.cover-page .eyebrow{color:var(--gold-light);font-size:9px}.cover-page h1{font:500 clamp(38px,5vw,68px)/.86 'Cormorant Garamond',Georgia,serif;letter-spacing:-.02em;margin:23px auto 18px;max-width:580px;color:#fff7e8}.cover-page h2{font:500 clamp(15px,2vw,24px) 'Cormorant Garamond',serif;color:#e9d8ac;margin:18px 0}.cover-rule{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--gold);margin:20px auto}.cover-rule:before,.cover-rule:after{content:'';width:70px;height:1px;background:var(--gold)}.cover-note{font:italic 17px/1.45 'Cormorant Garamond',serif;color:#e7e1cf;max-width:370px;margin:0 auto}.cover-years{font:500 24px 'Cormorant Garamond',serif;letter-spacing:.14em;color:var(--gold-light);margin-top:40px}.cover-years i{font-style:normal;color:#fff}.cover-institution{font-size:8px;letter-spacing:.18em;color:#e4d7b6;margin-top:24px}.cover-ornament{position:absolute;left:0;right:0;text-align:center;color:var(--gold);font-size:17px;letter-spacing:.6em;z-index:2}.cover-ornament.top{top:5%}.cover-ornament.bottom{bottom:7%;font-size:34px}.cover-page .folio{border-color:#d6b66b66;color:#e5d6b0}.cover-page .folio a{color:var(--gold-light)}.index-page{background:linear-gradient(160deg,#fbf7ec,#f0e7d3)}.display-title{font:500 clamp(34px,4vw,52px)/.9 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:12px 0}.intro-copy{font:italic 15px/1.4 'Cormorant Garamond',serif;color:#686b5e;max-width:520px;margin:0 0 22px}.index-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.index-entry{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #d8c9a7a6;min-width:0}.index-no{font-size:9px;color:#aa8543;min-width:19px}.index-entry>div{min-width:0}.index-entry strong{display:block;font:600 13px 'Cormorant Garamond',serif;color:var(--emerald-deep)}.index-entry small{display:block;font-size:8px;color:#7b7e72;margin-top:2px}.index-line{flex:1;border-bottom:1px dotted #c5b58f;align-self:center;min-width:5px}.editor-note{font-size:9px;line-height:1.4;color:#7c6d4b;margin-top:18px}.identity-page{background:linear-gradient(145deg,#fcf8ee,#f2e9d7)}.identity-head{border-bottom:1px solid var(--line);padding-bottom:6%}.identity-layout{display:grid;grid-template-columns:1fr .82fr;gap:7%;align-items:center;margin-top:7%}.identity-copy{min-width:0}.profile-overline{font-size:8px;letter-spacing:.2em;color:#9a7b3c;margin:0 0 13px}.profile-name{font:500 clamp(32px,4.2vw,54px)/.88 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:0;overflow-wrap:anywhere}.profile-nickname{font:italic 19px 'Cormorant Garamond',serif;color:#a17c38;margin:12px 0}.identity-meta{display:flex;flex-direction:column;gap:7px;margin-top:17px;font:15px 'Cormorant Garamond',serif;color:#58675a}.identity-meta span:first-child{color:var(--emerald);font-weight:600}.hero-photo{margin:0;padding:7px;background:#fffdf6;border:1px solid #d5bd84;box-shadow:0 8px 22px #233a2d1c}.hero-photo img{width:100%;height:100%;max-height:250px;aspect-ratio:4/5;object-fit:contain;display:block;background:#e9e3d5}.hero-photo figcaption{font:italic 10px/1.3 'Cormorant Garamond',serif;text-align:center;color:#686d62;padding:7px 2px 2px;overflow-wrap:anywhere}.profile-details{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin-top:6%}.detail-item{padding:11px 0;border-bottom:1px solid #ded2b9}.detail-item span{font-size:8px;letter-spacing:.16em;font-weight:700;color:var(--emerald)}.detail-item p{font:15px/1.3 'Cormorant Garamond',serif;margin:6px 0 0;overflow-wrap:anywhere;white-space:pre-wrap}.identity-bottom{position:absolute;left:8%;right:8%;bottom:10%;display:flex;justify-content:space-between;color:#9b885e;font-size:7px;letter-spacing:.14em}.story-page{background:linear-gradient(150deg,#fbf7ec,#f5eddd)}.story-running{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;color:#777a6c;font-size:7px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.story-heading{margin-top:10%}.story-heading h2,.photo-page-heading h2{font:500 clamp(32px,4.5vw,52px)/.95 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:12px 0}.gold-rule{width:70px;height:2px;background:var(--gold);margin:18px 0 26px}.story-body{font:clamp(15px,1.7vw,19px)/1.48 'Cormorant Garamond',Georgia,serif;color:#39443a;white-space:normal;overflow-wrap:anywhere}.story-body p{margin:0 0 1em;white-space:pre-wrap}.story-signoff{position:absolute;bottom:11%;right:8%;font:italic 13px 'Cormorant Garamond',serif;color:#9a7a3c}.story-signoff span{color:var(--emerald)}.photo-page{background:linear-gradient(155deg,#f8f3e8,#e8e8d8)}.photo-page-heading{margin:5% 0 4%}.photo-page-heading h2{font-size:clamp(25px,3.3vw,38px);margin:8px 0}.photo-grid{height:69%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:15px;align-items:stretch}.photo-grid.count-1{grid-template-columns:minmax(0,1fr)}.photo-grid.count-1 .photo-mat{flex:0 1 auto;height:56%;}.photo-grid.count-1 .photo-card{height:100%;}.photo-grid .photo-card figcaption{max-height:none;overflow:visible;}.photo-card{min-width:0;min-height:0;margin:0;display:flex;flex-direction:column;padding:7px;background:#fffdf6;border:1px solid #d7c9a8;box-shadow:0 8px 24px #24392d13}.photo-mat{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#e9e4d8;padding:5px}.photo-mat img{width:100%;height:100%;object-fit:contain;display:block}.photo-card figcaption{flex:0 0 auto;max-height:34%;overflow:visible;white-space:pre-wrap;overflow-wrap:anywhere;padding:10px 4px 3px;text-align:center;font:italic 13px/1.25 'Cormorant Garamond',serif;color:#4d594e}.closing-page{background:linear-gradient(145deg,#0a4034,#165e4b);color:#f8efd8}.closing-page:before{content:'';position:absolute;inset:3%;border:1px solid #d3b36b}.closing-page .paper-frame{display:flex;align-items:center;justify-content:center}.closing-content{text-align:center;position:relative;z-index:1}.small-seal{width:68px;height:68px;font-size:38px;margin-bottom:30px}.closing-content h2{font:500 clamp(40px,5vw,62px)/.9 'Cormorant Garamond',serif;color:#fff4dd;margin:23px 0}.closing-content h2 em{color:var(--gold-light);font-weight:400}.closing-content p{font:italic 18px 'Cormorant Garamond',serif;color:#e4d8ba;max-width:400px;margin:0 auto 32px}.closing-content strong{font-size:8px;letter-spacing:.2em;color:var(--gold-light)}.closing-page .folio{border-color:#d3b36b66;color:#e4d8ba}.closing-page .folio a{color:var(--gold-light)}.controls{display:flex;align-items:center;justify-content:center;gap:25px;padding-top:12px}.controls button{width:37px;height:37px;border-radius:50%;border:1px solid #8f9b8d;background:#fbf7ec;color:var(--emerald);font-size:27px;line-height:1;cursor:pointer}.controls button:disabled{opacity:.3;cursor:default}.controls span{font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--emerald)}.controls i{font-style:normal;color:#b19a67;padding:0 5px}.site-footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #8d9b8c80;padding-top:12px;color:#59665b;font-size:10px}.site-footer a{color:var(--emerald);font-weight:700;letter-spacing:.1em;text-decoration:none}.loading{min-height:100vh;display:grid;place-items:center;color:var(--emerald);font:30px 'Cormorant Garamond',serif}
+@media(max-width:900px){.app-shell{padding:16px}.reader-layout{gap:12px}.contents{width:155px;flex-basis:155px}.contents button{font-size:10px;padding:8px 5px}.book{max-height:calc(100vh - 180px)}.paper-frame{padding:6% 7% 9%}.profile-name{font-size:clamp(26px,4vw,40px)}.hero-photo img{max-height:180px}.story-body{font-size:15px}.index-entry strong{font-size:11px}}
+@media(max-width:650px){.app-shell{padding:10px}.site-header{align-items:flex-start;flex-direction:column;padding-bottom:12px}.site-header h1{font-size:32px}.header-actions a{padding:8px 10px;font-size:9px}.reader-layout{display:block;padding:12px 0 6px}.contents{display:none}.book{width:min(100%,500px);max-height:none;aspect-ratio:210/297;margin:0 auto}.paper-frame{padding:7% 7% 10%}.cover-page h1{font-size:40px}.seal{width:65px;height:65px;font-size:36px;margin-bottom:20px}.cover-note{font-size:14px}.cover-years{margin-top:24px}.index-grid{gap:0 10px}.index-entry{gap:5px;padding:7px 0}.index-entry strong{font-size:10px}.index-entry small{font-size:7px}.index-no{font-size:7px;min-width:14px}.intro-copy{font-size:12px;margin-bottom:12px}.display-title{font-size:34px}.profile-name{font-size:30px}.identity-layout{gap:5%;grid-template-columns:1fr .7fr}.hero-photo{padding:4px}.hero-photo img{max-height:150px}.identity-meta{font-size:12px}.profile-details{gap:0 10px;margin-top:4%}.detail-item{padding:7px 0}.detail-item span{font-size:7px}.detail-item p{font-size:12px}.story-heading{margin-top:7%}.story-heading h2{font-size:34px}.story-body{font-size:14px;line-height:1.4}.photo-grid{gap:7px;height:68%}.photo-card{padding:4px}.photo-card figcaption{font-size:11px;padding-top:6px}.story-signoff{font-size:10px;bottom:10%}.folio{font-size:6px;left:7%;right:7%}.folio-number{font-size:7px}.site-footer{font-size:9px}.closing-content h2{font-size:40px}}
+/* PDF mode: each logical page becomes an A4 portrait sheet. */
+html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;overflow:visible!important;background:#fff!important}.pdf-export{width:210mm;margin:0 auto}.pdf-sheet{width:210mm;height:297mm;page-break-after:always;break-after:page;overflow:hidden}.pdf-sheet:last-child{page-break-after:auto;break-after:auto}.pdf-sheet .paper{width:210mm;height:297mm;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}.pdf-sheet .paper-frame{padding:21mm 19mm 25mm}.pdf-sheet .folio{left:19mm;right:19mm;bottom:8mm}.pdf-sheet .cover-page .paper-frame,.pdf-sheet .closing-page .paper-frame{padding:0}.pdf-sheet .identity-page .hero-photo img{max-height:75mm}.pdf-sheet .story-body{font-size:15pt;line-height:1.42}.pdf-sheet .photo-grid{height:190mm}.pdf-sheet .photo-card figcaption{max-height:40%;font-size:11pt}.pdf-sheet .index-entry strong{font-size:12pt}.pdf-sheet .index-entry small{font-size:8pt}@page{size:A4 portrait;margin:0}
 
-/* Participant navigation */
-.book-layout{display:flex;align-items:center;gap:27px;width:100%;max-width:1500px;margin:0 auto;min-height:0;flex:1}
-.participant-nav{width:210px;flex:0 0 210px;height:min(640px,calc(100vh - 150px));align-self:center;padding:18px 12px;border:1px solid rgba(120,100,70,.28);border-radius:10px;background:rgba(245,240,229,.92);box-sizing:border-box;overflow-y:auto}
-.participant-nav-title{font-size:12px;letter-spacing:.18em;font-weight:700;margin-bottom:14px;padding:0 8px 10px;border-bottom:1px solid rgba(120,100,70,.25)}
-.participant-list{display:flex;flex-direction:column;gap:4px}
-.participant-link{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 8px;border:0;border-radius:6px;background:transparent;text-align:left;cursor:pointer;font:inherit;color:var(--ink)}
-.participant-link:hover{background:rgba(120,100,70,.10)}
-.participant-link.active{background:rgba(120,100,70,.16)}
-.participant-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
-.participant-page{flex:0 0 auto;font-size:11px;opacity:.65}
-.book-layout .stage{flex:1 1 auto;min-width:0}
-@media(max-width:850px){
-  .book-layout{gap:8px}
-  .participant-nav{width:155px;flex-basis:155px;padding:12px 7px}
-  .participant-nav-title{font-size:10px}
-  .participant-name{font-size:11px}
-  .participant-page{font-size:9px}
-  footer{font-size:9px}
-  .footer-actions{gap:8px}
-  .footer-actions>span{max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pdf-button{padding:5px 8px;font-size:8px}
+/* Profile-page recalibration: keep every field inside the printable safe area. */
+.identity-page .paper-frame{padding-bottom:17%!important;}
+.identity-page .identity-head{padding-bottom:3%!important;}
+.identity-page .identity-layout{margin-top:4%!important;gap:5%!important;grid-template-columns:minmax(0,1fr) minmax(0,.72fr)!important;}
+.identity-page .profile-name{font-size:clamp(27px,3.4vw,45px)!important;line-height:.92!important;overflow-wrap:anywhere;}
+.identity-page .profile-nickname{margin:7px 0!important;font-size:16px!important;}
+.identity-page .identity-meta{margin-top:10px!important;gap:4px!important;font-size:13px!important;overflow-wrap:anywhere;}
+.identity-page .hero-photo{padding:5px!important;}
+.identity-page .hero-photo img{max-height:190px!important;}
+.identity-page .profile-details{margin-top:3.5%!important;gap:0 20px!important;}
+.identity-page .detail-item{min-width:0;padding:6px 0!important;}
+.identity-page .detail-item span{font-size:7px!important;letter-spacing:.12em!important;}
+.identity-page .detail-item p{font-size:12px!important;line-height:1.2!important;margin-top:4px!important;overflow-wrap:anywhere!important;word-break:break-word!important;white-space:pre-wrap!important;}
+.identity-page .identity-bottom{left:8%;right:8%;bottom:12.5%!important;gap:12px;font-size:6px!important;}
+.identity-page .folio{bottom:6%!important;}
+@media(max-width:650px){
+ .identity-page .paper-frame{padding-bottom:18%!important;}
+ .identity-page .identity-layout{grid-template-columns:minmax(0,1fr) minmax(0,.68fr)!important;margin-top:4%!important;}
+ .identity-page .profile-name{font-size:clamp(21px,5.2vw,29px)!important;}
+ .identity-page .hero-photo img{max-height:125px!important;}
+ .identity-page .profile-details{gap:0 9px!important;margin-top:3%!important;}
+ .identity-page .detail-item p{font-size:10px!important;line-height:1.15!important;}
+ .identity-page .identity-bottom{bottom:13%!important;}
+}
+@media print{
+ .pdf-sheet .identity-page .paper-frame{padding-bottom:22mm!important;}
+ .pdf-sheet .identity-page .identity-layout{margin-top:9mm!important;}
+ .pdf-sheet .identity-page .hero-photo img{max-height:52mm!important;}
+ .pdf-sheet .identity-page .profile-details{margin-top:7mm!important;}
+ .pdf-sheet .identity-page .detail-item p{font-size:10pt!important;line-height:1.2!important;overflow-wrap:anywhere!important;word-break:break-word!important;}
+ .pdf-sheet .identity-page .identity-bottom{bottom:14mm!important;}
+ .pdf-sheet .identity-page .folio{bottom:8mm!important;}
 }
 
-/* Final web navigation / footer refinements */
-.book-layout{
-  align-items:center;
-  gap:28px;
-  padding-top:0;
-}
+/* Editorial photo spreads: balanced layouts, never crop source photographs. */
+.photo-page .photo-page-heading{margin:3% 0 3.5%}
+.photo-grid{height:70%;gap:16px;align-items:stretch}
+.photo-grid.count-1{display:flex;justify-content:center;align-items:stretch}
+.photo-grid.count-1 .photo-card{width:78%;height:100%;padding:10px}
+.photo-grid.count-1 .photo-mat{height:auto;flex:1;min-height:0;padding:10px;background:linear-gradient(135deg,#eee7d6,#e2e4d8)}
+.photo-grid.count-1 .photo-mat img{object-fit:contain}
+.photo-grid.count-2{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr)}
+.photo-grid.count-2 .photo-card:nth-child(2){margin-top:9%;margin-bottom:0}
+.photo-grid.count-3{grid-template-columns:1.15fr .85fr;grid-template-rows:1fr 1fr;gap:12px}
+.photo-grid.count-3 .photo-card:first-child{grid-row:1 / span 2}
+.photo-grid.count-3 .photo-card:nth-child(2),.photo-grid.count-3 .photo-card:nth-child(3){min-height:0}
+.photo-card{padding:8px;box-shadow:0 10px 26px #24392d12;border-color:#d3c39f}
+.photo-mat{padding:7px;background:linear-gradient(145deg,#eee8d8,#e3e5d9)}
+.photo-card figcaption{padding:11px 7px 5px;font-size:13px;line-height:1.32;text-align:left;color:#435247;overflow-wrap:anywhere;white-space:pre-wrap}
+.photo-grid.count-3 .photo-card figcaption{font-size:11px;padding:7px 3px 2px}
+@media(max-width:650px){.photo-grid{gap:7px}.photo-grid.count-1 .photo-card{width:90%;padding:5px}.photo-grid.count-2 .photo-card:nth-child(2){margin-top:7%}.photo-grid.count-3{gap:5px}.photo-card{padding:4px}.photo-card figcaption{font-size:9px;line-height:1.2;padding:5px 3px}.photo-grid.count-3 .photo-card figcaption{font-size:8px;padding:4px 2px}}
+@media print{.pdf-sheet .photo-grid{height:190mm}.pdf-sheet .photo-grid.count-1 .photo-card{width:78%}.pdf-sheet .photo-card figcaption{font-size:11pt;line-height:1.3;max-height:none}}
 
-.participant-nav{
-  margin-top:9px;
-  align-self:center;
-}
 
-.footer-right{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:18px;
-}
-
-/* PDF access: prominent control in the top-right corner */
-.pdf-download{
-  position:absolute;
-  top:17px;
-  right:22px;
-  z-index:20;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:36px;
-  padding:8px 16px;
-  border:1px solid var(--gold);
-  border-radius:6px;
-  background:#f8f3e8;
-  color:var(--forest);
-  text-decoration:none;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.10em;
-  box-shadow:0 2px 8px rgba(50,60,50,.10);
-  transition:background .15s ease, transform .15s ease;
-}
-
-.pdf-download:hover{
-  background:#eee5d4;
-  transform:translateY(-1px);
-}
-
-/* Footer credit */
-.footer-right > span{
-  font-size:12px;
-  color:var(--muted);
-}
-
-@media(max-width:850px){
-  .book-layout{
-    gap:12px;
-  }
-
-  .footer-right{
-    gap:8px;
-  }
-
-  .footer-right > span{
-    display:none;
-  }
-
-  .pdf-download{
-    top:12px;
-    right:12px;
-    min-height:32px;
-    padding:7px 11px;
-    font-size:10px;
-  }
-}
-
-/* Final header/navigation corrections */
-.app > header{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding-right:185px;
-}
-
-.app > header > .brand,
-.app > header h1{
-  margin:0;
-  padding:0;
-  line-height:1.05;
-}
-
-.app > header .eyebrow{
-  display:none;
-}
-
-/* Keep the PDF button in the top-right; reserve header space for it. */
-.pdf-download{
-  top:17px;
-  right:22px;
-}
-
-/* Page arrows belong below the centered book, not in the header. */
-.app > header .page-controls,
-.app > header .nav-controls{
-  position:absolute;
-  top:calc(100% + 14px);
-  left:50%;
-  transform:translateX(-50%);
-  z-index:15;
-}
-
-/* If controls are direct children of the main book area, center them below it. */
-.book-controls,
-.page-controls{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* Ensure the main book remains vertically centered. */
-.book-layout{
-  align-items:center;
-}
-
-/* Footer credit remains readable without competing with the PDF control. */
-.footer-right > span{
-  font-size:12px;
+/* V3.1: content-safe pagination and editorial photo emphasis */
+.story-page .paper-frame{padding-bottom:15%!important;}
+.story-heading{margin-top:6%!important;}
+.story-heading h2{font-size:clamp(30px,4vw,46px)!important;line-height:1!important;}
+.story-body{font-size:clamp(14px,1.45vw,17px)!important;line-height:1.42!important;overflow-wrap:anywhere;}
+.story-body p{margin-bottom:.78em!important;}
+.story-signoff{bottom:12.5%!important;font-size:11px!important;max-width:55%;text-align:right;}
+.identity-page .paper-frame{padding-bottom:16%!important;}
+.identity-page .identity-head{padding-bottom:3%!important;}
+.identity-page .identity-layout{margin-top:3.5%!important;gap:5%!important;grid-template-columns:minmax(0,1fr) minmax(0,.68fr)!important;}
+.identity-page .profile-name{font-size:clamp(25px,3.5vw,43px)!important;line-height:.96!important;overflow-wrap:anywhere;}
+.identity-page .hero-photo img{max-height:165px!important;height:auto!important;}
+.identity-page .profile-details{margin-top:3%!important;gap:0 18px!important;}
+.identity-page .detail-item{min-width:0;padding:5px 0!important;}
+.identity-page .detail-item p{font-size:clamp(10px,1.05vw,13px)!important;line-height:1.24!important;overflow-wrap:anywhere!important;word-break:break-word!important;white-space:pre-wrap!important;}
+.identity-page .identity-bottom{position:static!important;margin-top:4%!important;display:flex;gap:12px;justify-content:space-between;font-size:6px!important;}
+.photo-grid{height:73%!important;display:flex!important;justify-content:center;align-items:stretch;}
+.photo-grid .photo-card{width:100%;max-width:100%;height:100%;min-height:0;}
+.photo-grid .photo-mat{flex:1;min-height:0;padding:9px;background:linear-gradient(135deg,#eee7d6,#e2e4d8);}
+.photo-grid .photo-mat img{object-fit:contain!important;max-width:100%;max-height:100%;}
+.photo-grid .photo-card figcaption{max-height:none!important;overflow:visible!important;flex:0 0 auto;white-space:pre-wrap;overflow-wrap:anywhere;font-size:clamp(11px,1.1vw,14px)!important;line-height:1.35!important;padding:12px 9px 6px!important;text-align:left!important;}
+.photo-page-heading{margin:4% 0 3%!important;}
+.pdf-sheet .story-page .paper-frame{padding-bottom:34mm!important;}
+.pdf-sheet .story-body{font-size:12.5pt!important;line-height:1.34!important;}
+.pdf-sheet .story-signoff{bottom:17mm!important;}
+.pdf-sheet .identity-page .paper-frame{padding-bottom:29mm!important;}
+.pdf-sheet .identity-page .hero-photo img{max-height:43mm!important;}
+.pdf-sheet .identity-page .detail-item p{font-size:9pt!important;line-height:1.18!important;overflow-wrap:anywhere!important;word-break:break-word!important;}
+.pdf-sheet .identity-page .identity-bottom{margin-top:3%!important;}
+.pdf-sheet .photo-grid{height:72%!important;}
+@media(max-width:650px){
+ .story-page .paper-frame{padding-bottom:17%!important;}
+ .story-body{font-size:12px!important;line-height:1.3!important;}
+ .story-signoff{bottom:12%!important;font-size:8px!important;}
+ .identity-page .hero-photo img{max-height:110px!important;}
+ .identity-page .detail-item p{font-size:9px!important;}
+ .photo-grid{height:72%!important;}
+ .photo-grid .photo-card figcaption{font-size:10px!important;}
 }
 
 
-.app > header h1{
-  font-size:clamp(30px,3.1vw,44px);
+/* V3.2 — conservative safe-area layout for text-heavy pages.
+   Pagination is intentionally smaller so body copy cannot run into the folio. */
+.story-page .paper-frame{padding:7.2% 8% 19%!important;overflow:hidden;}
+.story-page .story-heading{margin-top:4.5%!important;}
+.story-page .story-heading h2{font-size:clamp(27px,3.5vw,40px)!important;line-height:1.02!important;margin:9px 0!important;}
+.story-page .gold-rule{margin:12px 0 18px!important;}
+.story-page .story-body{font-size:clamp(13px,1.28vw,15.5px)!important;line-height:1.34!important;overflow-wrap:anywhere;word-break:normal;}
+.story-page .story-body p{margin:0 0 .68em!important;white-space:pre-wrap;break-inside:avoid;}
+.story-page .story-signoff{display:none!important;}
+.story-page .folio{bottom:2.4%!important;}
+.pdf-sheet .story-page .paper-frame{padding:19mm 19mm 32mm!important;}
+.pdf-sheet .story-page .story-heading{margin-top:10mm!important;}
+.pdf-sheet .story-page .story-heading h2{font-size:25pt!important;}
+.pdf-sheet .story-page .story-body{font-size:11.2pt!important;line-height:1.3!important;}
+.pdf-sheet .story-page .story-body p{margin-bottom:5pt!important;}
+.pdf-sheet .story-page .folio{bottom:8mm!important;}
+/* Keep long contact details and education text inside the profile safe area. */
+.identity-page .paper-frame{padding-bottom:18%!important;}
+.identity-page .profile-details{margin-top:2.5%!important;}
+.identity-page .detail-item{padding:4px 0!important;}
+.identity-page .detail-item p{overflow-wrap:anywhere!important;word-break:break-word!important;}
+.pdf-sheet .identity-page .paper-frame{padding-bottom:26mm!important;}
+
+/* V3.3: content-first pagination — complete short sections share a page. */
+.story-page .story-heading{margin-top:5%!important;}
+.story-page .story-body{font-size:clamp(14px,1.42vw,17px)!important;line-height:1.38!important;}
+.story-page .story-body p{margin:0 0 .72em!important;break-inside:avoid;}
+.story-page.continuation-page .story-heading.compact-heading{margin-top:5%!important;margin-bottom:3%!important;}
+.story-page.continuation-page .story-heading.compact-heading .section-kicker{font-size:9px;letter-spacing:.16em;}
+@media print{
+ .pdf-sheet .story-page .paper-frame{padding:19mm 19mm 30mm!important;}
+ .pdf-sheet .story-page .story-heading{margin-top:8mm!important;}
+ .pdf-sheet .story-page .story-body{font-size:12pt!important;line-height:1.34!important;}
+ .pdf-sheet .story-page.continuation-page .story-heading.compact-heading{margin-top:5mm!important;margin-bottom:4mm!important;}
 }
 
+/* V3.4: use identical physical dimensions for measurement and PDF layout. */
+.pagination-probe{position:fixed;left:-10000px;top:0;width:794px;height:1123px;visibility:hidden;pointer-events:none;z-index:-1}
+.pagination-probe>.paper{width:794px;height:1123px}
+.pagination-probe .paper-frame{padding:57px 64px 160px!important}
+.pagination-probe .story-body{font-size:17px!important;line-height:1.38!important}
+.pagination-probe .story-heading{margin-top:55px!important}
+.pagination-probe .story-heading h2{font-size:48px!important}
+.pagination-probe .folio{bottom:27px!important}
+/* On-screen and exported story pages use the same reference typography. */
+.story-page .story-body{font-size:clamp(12px,2.14%,17px)!important;line-height:1.38!important}
+.story-page .folio{z-index:2;background:var(--paper)}
 
-/* FINAL HEADER + PAGE NAVIGATION */
-.app > header{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  padding-right:185px;
-}
+/* V3.4 measured A4 pagination: identical geometry for the measurement probe and PDF. */
+.pagination-probe{position:fixed!important;left:-20000px!important;top:0!important;visibility:hidden!important;pointer-events:none!important;z-index:-1!important;}
+.pagination-probe .paper{width:210mm!important;height:297mm!important;}
+.pagination-probe .story-page .paper-frame,.pdf-sheet .story-page .paper-frame{padding:19mm 19mm 30mm!important;}
+.pagination-probe .story-page .story-heading,.pdf-sheet .story-page .story-heading{margin-top:8mm!important;}
+.pagination-probe .story-page .story-body,.pdf-sheet .story-page .story-body{font-size:12pt!important;line-height:1.34!important;}
+.pagination-probe .story-page .story-body p,.pdf-sheet .story-page .story-body p{margin-bottom:5pt!important;}
+.pagination-probe .story-page .folio,.pdf-sheet .story-page .folio{bottom:8mm!important;}
 
-.app > header h1{
-  margin:0;
-  line-height:1;
-  font-size:clamp(30px,3.1vw,44px);
-}
+/* V3.5 adaptive story typography: each page scales independently by its own text load. */
+.story-page .story-body{font-size:calc(12pt * var(--page-font-scale, 1))!important;line-height:1.34!important;overflow-wrap:anywhere;word-break:normal;}
+.story-page .story-body p{margin-bottom:5pt!important;orphans:2;widows:2;}
+.pagination-probe .story-page .story-body{font-size:calc(12pt * var(--page-font-scale, 1))!important;}
+.pdf-sheet .story-page .story-body{font-size:calc(12pt * var(--page-font-scale, 1))!important;}
 
-.app > header .kicker{
-  display:none !important;
-}
+/* V3.6 — one true A4 portrait layout for preview, pagination measurement and PDF export.
+   The book remains 210 × 297 mm internally and is scaled as a whole for the reader viewport. */
+.book-viewport{position:relative;flex:0 0 auto;margin:0 auto;overflow:visible;}
+.book{position:absolute!important;left:0!important;top:0!important;width:210mm!important;height:297mm!important;aspect-ratio:auto!important;max-height:none!important;transform:scale(var(--viewer-scale,1));transform-origin:top left!important;}
+.pagination-probe{position:fixed!important;left:-20000px!important;top:0!important;width:210mm!important;height:297mm!important;visibility:hidden!important;pointer-events:none!important;z-index:-1!important;overflow:hidden!important;}
+.pagination-probe .paper{width:210mm!important;height:297mm!important;}
+/* These identical physical safe areas are shared by the probe, live flipbook, and print renderer. */
+.story-page .paper-frame,.pagination-probe .story-page .paper-frame,.pdf-sheet .story-page .paper-frame{padding:19mm 19mm 30mm!important;overflow:hidden!important;}
+.story-page .story-heading,.pagination-probe .story-page .story-heading,.pdf-sheet .story-page .story-heading{margin-top:10mm!important;margin-bottom:0!important;}
+.story-page .story-heading h2,.pagination-probe .story-page .story-heading h2,.pdf-sheet .story-page .story-heading h2{font-size:28pt!important;line-height:1.02!important;margin:8px 0!important;}
+.story-page .gold-rule,.pagination-probe .story-page .gold-rule,.pdf-sheet .story-page .gold-rule{margin:10px 0 15px!important;}
+.story-page .story-body,.pagination-probe .story-page .story-body,.pdf-sheet .story-page .story-body{font-size:calc(12pt * var(--page-font-scale,1))!important;line-height:1.34!important;overflow-wrap:anywhere!important;word-break:normal!important;}
+.story-page .story-body p,.pagination-probe .story-page .story-body p,.pdf-sheet .story-page .story-body p{margin:0 0 5pt!important;white-space:pre-wrap;break-inside:avoid;orphans:2;widows:2;}
+/* Keep fixed footers clear of story and identity content. */
+.story-page .folio,.pdf-sheet .story-page .folio{left:19mm!important;right:19mm!important;bottom:8mm!important;z-index:5;background:var(--paper);}
+.identity-page .paper-frame,.pdf-sheet .identity-page .paper-frame{padding:19mm 19mm 30mm!important;overflow:hidden!important;}
+.identity-page .identity-bottom{display:none!important;}
+.identity-page .profile-details{margin-top:5%!important;}
+.identity-page .detail-item p{overflow-wrap:anywhere!important;word-break:break-word!important;}
+@media(max-width:650px){.book-viewport{margin:0 auto 10px!important;}.stage{overflow:visible!important}.book{max-height:none!important;}}
 
-/* The arrows sit below the centered e-book, not in the header. */
-.book-page-nav{
-  flex:0 0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:11px;
-  width:100%;
-  margin:8px 0 4px;
-}
-
-.book-page-nav button{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:1px solid #879488;
-  background:#f8f3e8;
-  color:var(--deep);
-  font-size:28px;
-  cursor:pointer;
-}
-
-.book-page-nav button:disabled{
-  opacity:.35;
-}
-
-.book-page-nav span{
-  font-size:11px;
-  color:var(--muted);
-  min-width:58px;
-  text-align:center;
-}
-
-/* PDF button stays in its current top-right location and is visually larger. */
-.pdf-download{
-  position:absolute;
-  top:17px;
-  right:22px;
-  z-index:20;
-  min-height:36px;
-  padding:8px 16px;
-  font-size:11px;
-}
-
-/* Keep the book itself vertically centered. */
-.book-layout{
-  align-items:center;
-}
-
-/* Participant panel remains aligned with the top of the book. */
-.participant-nav{
-  align-self:center;
-  margin-top:9px;
-}
-
-@media(max-width:850px){
-  .app > header{
-    padding-right:145px;
-  }
-
-  .book-page-nav{
-    margin-top:6px;
-  }
-
-  .book-page-nav button{
-    width:36px;
-    height:36px;
-  }
-
-  .pdf-download{
-    top:12px;
-    right:12px;
-    min-height:32px;
-    padding:7px 11px;
-    font-size:10px;
-  }
-}
-
-.footer-right > span a{
-  color:inherit;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.footer-right > span a:hover{
-  text-decoration:underline;
-}
+/* Match the folio geometry across all A4 pages and both publication formats. */
+.paper .folio,.pdf-sheet .folio{left:19mm!important;right:19mm!important;bottom:8mm!important;}

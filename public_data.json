@@ -1,117 +1,564 @@
 {
-  "schema_version": "1.0",
   "book": {
-    "title": "Golden Jubilee 50th Anniversary E-Book",
-    "institution": "",
-    "batch": ""
+    "title": "Golden Jubilee ’76",
+    "subtitle": "Golden Jubilee Celebration • NIT Raipur",
+    "years": "1976–2026",
+    "institution": "National Institute of Technology Raipur",
+    "website": "boroai.in"
   },
+  "index": [
+    {
+      "number": "32",
+      "name": "Anant Prabhakar Rajimwale",
+      "branch": "Metallurgy"
+    },
+    {
+      "number": "45",
+      "name": "Bijan K. Dutta",
+      "branch": "Mechanical"
+    },
+    {
+      "number": "44",
+      "name": "Chandra Kant Verma",
+      "branch": "Mechanical"
+    },
+    {
+      "number": "40",
+      "name": "Chandra Prakash Soni",
+      "branch": "Mechanical"
+    },
+    {
+      "number": "33",
+      "name": "Durga Prasad Sharma",
+      "branch": "Civil"
+    },
+    {
+      "number": "31",
+      "name": "GVR Raja",
+      "branch": "Metallurgy"
+    },
+    {
+      "number": "41",
+      "name": "Jaikumar Shankerrao Kakpure",
+      "branch": "Electrical"
+    },
+    {
+      "number": "37",
+      "name": "Jaiman Minj",
+      "branch": "Mechanical"
+    },
+    {
+      "number": "39",
+      "name": "Jayant Diwakar Muley",
+      "branch": "Civil"
+    },
+    {
+      "number": "36",
+      "name": "Nakib Ullah Khan",
+      "branch": "Mechanical"
+    },
+    {
+      "number": "43",
+      "name": "Pawan Jain",
+      "branch": "Mining"
+    },
+    {
+      "number": "42",
+      "name": "Rajesh Kumar Shrivastava",
+      "branch": "Civil"
+    },
+    {
+      "number": "35",
+      "name": "Rajiv Charde",
+      "branch": "Civil"
+    },
+    {
+      "number": "34",
+      "name": "Rithik Choudhury",
+      "branch": "Chemical"
+    },
+    {
+      "number": "38",
+      "name": "Sheel Kant Pathak",
+      "branch": "Civil"
+    }
+  ],
   "participants": [
     {
-      "participant_id": "P-20260813-193819-u2MFRimk",
-      "name": "Pramit Dutta",
-      "nickname": "Dutta",
-      "branch": "Electrical",
-      "location": "Mumbai, India",
-      "education": "MSc Engineering",
-      "career": "CV expert",
-      "family": "",
-      "memory": "Loved the canteen",
-      "photos": {
-        "recent": {
-          "filename": "Pramit Profile Pic - Copy - Pramit Dutta.png",
-          "file_id": "1RLsonKzOG4c0dW7P8cqGi4p6NUE5FrhK",
-          "caption": ""
+      "name": "Anant Prabhakar Rajimwale",
+      "nickname": "Anant",
+      "branch": "Metallurgical engg",
+      "email": "anant.rajimwale@gmail.com",
+      "phone": "9893411846",
+      "location": "Raipur, India",
+      "education": "B.E from G C E T Raipur. M Tech from IIT Bombay. Both degrees in Metallurgical Engg",
+      "career": "I worked as Associate Prof at N I T Raipur. I served the institute in several capacities including: \n1. Head of the dept , Met Engg. \n2. Dean, Students Welfare\n3. Dean, Faculty Welfare",
+      "family": "My wife retired as a Lecturer and Vice Principal at Gujrati School, Raipur. We have 2 sons. One in U S A. and one in Bangalore. Both of them are working as Software Engineers in multinational corporations.",
+      "memory": "I consider myself very fortunate to have worked as Professor and Dean at the same institute (then GCET Raipur, now NIT Raipur) where I graduated from with a B.E. degree. Further, during my tenure as Professor at NIT Raipur, I was also the hostel warden for the same hostel that I had visited as a student to study with my fellow batch mates. After my retirement, I feel proud to have served this prestigious institute that has been a major part of my life and achievement.",
+      "participant_id": "anant-prabhakar-rajimwale",
+      "photos": [
+        {
+          "src": "/assets/profiles/anant-prabhakar-rajimwale/photo-1.jpg",
+          "caption": "Anant Prabhakar Rajimwale: Now",
+          "alt": "Anant Prabhakar Rajimwale photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/anant-prabhakar-rajimwale/photo-2.jpg",
+          "caption": "Recent Photograph with my wife, Megha",
+          "alt": "Anant Prabhakar Rajimwale photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/anant-prabhakar-rajimwale/photo-3.jpg",
+          "caption": "This is a photograph from recent Ganesh Utsav that we celebrated together in San Jose, California (USA) at my elder son Abhishek's home. Like every year, my grandkids were excited for Ganesh ji to come home",
+          "alt": "Anant Prabhakar Rajimwale photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/anant-prabhakar-rajimwale/photo-4.jpg",
+          "caption": "Recent photo with my younger son Sameer and family in Bangalore",
+          "alt": "Anant Prabhakar Rajimwale photograph 4",
+          "order": 4
         }
-      }
+      ]
     },
     {
-      "participant_id": "P-20260813-194335-air0TU84",
-      "name": "majnu dada",
-      "nickname": "manu",
+      "name": "Chandra Kant Verma",
+      "nickname": "C K",
       "branch": "Mechanical",
-      "location": "Bay Area, USA",
-      "education": "dwdwdwdw",
-      "career": "wqqwqwqw",
-      "family": "fdfdfdfdfd",
-      "memory": "ngngngngngng",
-      "photos": {
-        "recent": {
-          "filename": "random-person - Pramit Dutta.jpeg",
-          "file_id": "1wZeS1laEHdfuItAPgCbrem9YraXhDBkJ",
-          "caption": "ewewewe"
+      "email": "ckv1310@gmail.com",
+      "phone": "61422558130",
+      "location": "Sydney, Australia",
+      "education": "• BE Mechanical, GEC (NIT) Raipur 1976 \n• ME (Turbomachines), IISc Bangalore 1978",
+      "career": "• Manager at BHEL Hyderabad, Ramachandrapuram 1978 – 1991\n- Research and Development Engineer Pumps 1978 – 1986 \n- Worked in the upgrade of Pumps used in power plants.\n- Indigenization of Pumps components used in Nuclear and Thermal power plants. \n- Developed High energy pumps used in Refineries.\n• Migrated to Australia in 1991\n• Chief Engineer at Weir Engineering 1991-2010 \n- Design and development of various pumps used for Australian Frigate Ships.\n- Design and development verities of Pumps based on applications.\n• Chief Engineer at Hydro Australia 2010-2018 \n- Pump upgrades of High integrity pumps to bring them to current design practice . \n• Chief Engineer Pumps at Sulzer Australia 2018 – 2023\n- Supporting the company and Pump Industries to sort out various issues and upgrades.\n• Chief Engineer Pumps at Industrial Plant Services Australia 2023 –Till Present \n- Supporting the team on various upgrades in the field of Rotating equipment .\n- Mentoring Young engineers and imparting the Knowledge and Experiences .\n- Components development using various current Technology.",
+      "family": "• Married to Rajeshwari Verma in 1985. She is Post Graduate from Degree girls College Raipur. Worked in a government lab in Sydney. Recently retired. We follow both local and Indian culture and well connected to both Australian and Indian communities.\n• Daughter (Garima Verma) is Graduate in Economics and Law with major in Economics. She works as a consultant in the economics. Developed self interest in Indian culture and dance as hobby. Proficient in “Bharatnatyam Dance “. Currently learning “Katthak “along with her daughter Esha (8 years) \n• Son (Gunjan Verma) Dentist specialized in “Special Care Needs He has his own practice since 2023. Well settled in Sydney",
+      "memory": "• Mani Ram Canteen. \nOne Sunday morning few of us went to canteen for tea. The waiter’s nick name was “Chavanni “. We were waiting for the Tea for a while. Then started raising our voices to Chanvanni to hurry up. By listening our high pitch voice, Mani Ram (the owner) picked up Chavanni’s ear and brought him in front of us. Then, He shouted to Chavanni in High Pitch “Aree, Sahab log Kutte Ke Mafic Bhonk Rahe Hai Aur tu Kan Nahin Dharata” \nWe enjoyed the Tea. But realized the sarcastic statement bit later.",
+      "participant_id": "chandra-kant-verma",
+      "photos": [
+        {
+          "src": "/assets/profiles/chandra-kant-verma/photo-1.jpg",
+          "caption": "Chandra Kant Verma: Now",
+          "alt": "Chandra Kant Verma photograph 1",
+          "order": 1
         },
-        "then": {
-          "filename": "Catalog Snapshot - Pramit Dutta.png",
-          "file_id": "1sydjSQHMwWY_1OlfLePVOZ8ieZwwEhRb",
-          "caption": "dddwwwww"
-        },
-        "family": {
-          "filename": "download - Pramit Dutta.png",
-          "file_id": "1ebBYoHBhhe-HakbsXqVxYaupOBQ0V75E",
-          "caption": "vvccvcvcv"
-        },
-        "additional": {
-          "filename": "BS20 - Pramit Dutta.png",
-          "file_id": "17CA7w5HEKTobty_7KqtKmAuSuggakxGG",
-          "caption": "vcvcvvcvc"
+        {
+          "src": "/assets/profiles/chandra-kant-verma/photo-2.jpg",
+          "caption": "CK Verma with spouse Rajehwari Verma In traditional Indian Saree",
+          "alt": "Chandra Kant Verma photograph 2",
+          "order": 2
         }
-      }
+      ]
     },
     {
-      "participant_id": "P-20260813-194608-6w4iem44",
-      "name": "chot chatri",
-      "nickname": "chotu",
-      "branch": "Physics",
-      "location": "antartica",
-      "education": "",
-      "career": "",
-      "family": "",
-      "memory": "",
-      "photos": {
-        "recent": {
-          "filename": "random-person (1) - Pramit Dutta.jpeg",
-          "file_id": "1Rns4YWos4_plAUnPnrhscOFuRv03IQJB",
-          "caption": ""
-        },
-        "then": {
-          "filename": "random-person (3) - Pramit Dutta.jpeg",
-          "file_id": "1n62Sv4eaC-g7_cC2wmOZ4Esyd0viuQBM",
-          "caption": "From kkl conference 1978"
+      "name": "Chandra Prakash Soni",
+      "nickname": "B.E.",
+      "branch": "Mechanical",
+      "email": "chandrasoni5156@gmail.com",
+      "phone": "9826295806",
+      "location": "Dewas, M.P. (India)",
+      "education": "Bachelor of Engineering",
+      "career": "I am currently working as a consultant in two small units in Dewas.\nWork as a GET in Gajara Gears Ltd Dewas\nWork as a manager in Steel tube Ltd Dewas\nWork as a senior general manager in uttam gelva Steels Ltd khapoli maharashtra",
+      "family": "Wife - Kiran Soni\nDaughter - Shikha Soni (married)\nSon - Vikas Soni (Expired on 07/08/2026)",
+      "memory": "---",
+      "participant_id": "chandra-prakash-soni",
+      "photos": [
+        {
+          "src": "/assets/profiles/chandra-prakash-soni/photo-1.jpg",
+          "caption": "Chandra Prakash Soni: Now",
+          "alt": "Chandra Prakash Soni photograph 1",
+          "order": 1
         }
-      }
+      ]
     },
     {
-      "participant_id": "P-20260813-213037-hBkx5TsQ",
-      "name": "santa claus",
-      "nickname": "santu",
-      "branch": "Gifting",
-      "location": "NorthPole , Artic",
-      "education": "qwert",
-      "career": "ds",
-      "family": "",
-      "memory": "",
-      "photos": {
-        "recent": {
-          "filename": "random-person (2) - Pramit Dutta.jpeg",
-          "file_id": "1lzY2pUqP9ajvVQj2TE7iVbK7UE0kUygu",
-          "caption": "dsdsd"
-        },
-        "then": {
-          "filename": "unnamed (1) - Pramit Dutta.png",
-          "file_id": "1RTsEz79Xad7Bg-gSzx-1doWZQmzHd1dp",
-          "caption": ""
-        },
-        "family": {
-          "filename": "Picture1 - Pramit Dutta.png",
-          "file_id": "1s-O6P0t2ODl8EiV2v5VoTkdkbBxcqEpt",
-          "caption": "sasasasasqssqssq"
-        },
-        "additional": {
-          "filename": "Screenshot 2026-08-13 212855 - Pramit Dutta.jpg",
-          "file_id": "1KYlQ66SnSUKj-w60UD61OtkK8TOUjEIk",
-          "caption": "lololo"
+      "name": "Durga Prasad Sharma",
+      "nickname": "",
+      "branch": "Civil",
+      "email": "sharmmadp09@gmail.com",
+      "phone": "9302935000",
+      "location": "31/1372, Durga Niwas, Behind Dr. Kalda Nursing Home, Katora Talab, Raipur C.G.",
+      "education": "B.E. (CIVIL), LLB, M.A. POLITICAL SCIENCE, MBA, MIE",
+      "career": "Retired as Chief Engineer Water Resource Department, Govt. of Chhattisgarh",
+      "family": "Spouse: Shashilata Sharma.\nDaughter 1- Bhavna: Working as Dean Anjaneya University & Son-in-law: Asim Kumar, Working as assistant Director, Bilasa Blood Bank. \nDaughter 2- Bharati: Working as teacher & Son-in-law: Satyadeep Pandey, Working as Manager Adani Power, Korba, C,G.",
+      "memory": "--",
+      "participant_id": "durga-prasad-sharma",
+      "photos": [
+        {
+          "src": "/assets/profiles/durga-prasad-sharma/photo-1.jpg",
+          "caption": "Durga Prasad Sharma : Now",
+          "alt": "Durga Prasad Sharma photograph 1",
+          "order": 1
         }
-      }
+      ]
+    },
+    {
+      "name": "GVR Raja",
+      "nickname": "Raja",
+      "branch": "Metallurgy",
+      "email": "gvrraja537@gmail.com",
+      "phone": "------",
+      "location": "Bhilai",
+      "education": "B.E.",
+      "career": "After completion of degree, I joined immediately as a Graduate Apprentice at BSP, Bhilai in 1976, then subsequently joined as Graduate Engineer Trainee at SAIL, BSP in March' 1977. Worked at BSP for 30 years till 2006. On transfer, I continued service at RSP, Rourkela worked there for nearly 8 years. Subsequently, after retirement, I returned to Bhilai in 2014, and settled here, permanently.",
+      "family": "We have 2 sons and one daughter. All are married. We have 3 grandsons, one each from our 3 children. Elder son settled in Germany, younger son at Pune and daughter works at Raipur/Bhilai.",
+      "memory": "During our final year at college, Late Shri K K Telang sir, who was then our new HoD, had been encouraging and motivating the entire group of Metallurgy wing students, both 4th and 5th year combined together. Under his guidance along with our local classmate YK Degan's untiring efforts, we had great time at the college, as well as during our industrial tour to Mumbai, Hyderabad and other places, where we visited various metallurgical plants, assessing our own job prospects. It would have otherwise been a rare possibility, as there were only 3 students in our branch, during final year.",
+      "participant_id": "gvr-raja",
+      "photos": [
+        {
+          "src": "/assets/profiles/gvr-raja/photo-1.jpg",
+          "caption": "GVR Raja: Now",
+          "alt": "GVR Raja photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/gvr-raja/photo-2.jpg",
+          "caption": "GVR Raja: Then",
+          "alt": "GVR Raja photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/gvr-raja/photo-3.jpg",
+          "caption": "GVR Raja and Family",
+          "alt": "GVR Raja photograph 3",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "name": "Jaikumar Shankerrao Kakpure",
+      "nickname": "Jaikumar",
+      "branch": "BE(Electrical)",
+      "email": "jaikak3385@gmail.com",
+      "phone": "7788815063",
+      "location": "3385 Church Street Vancouver BC Canada",
+      "education": "BE(Electrical) 1971-1976\nWon Gandhi Memorial Scholarship for Rs 1,000 per year for 5 years.\n22nd Batch, BARC Training School (1978)\nLLQP 2002\nCAIB-4 Level 3 2012",
+      "career": "Joined February 1978 Government Engineering College for ME(High Voltage) dropped out to join BARC Mumbai 27-08-1979 as Trainee Scientists. Left BARC on 31-05-1983 to join Maruti Udyog Ltd Gurgoan on 03-06-1983 till 31-12-1989. Worked Deputy Manager(MSD) at manufacturing plant.\nJoined Ispat Denro Ltd Kalmeshwar as Assistant General Manager(ISD) from 02-01-1990 to 30-06-1993.\nJoined Steel Tubes of India Devas as Deputy General Manager 02-07-1994 till 30-04-1995\nJoined Rajinder Pipes Ltd Mumbai as Group Head IT 01-05-1995 till 30-05-1997\nJoined Mather & Platt Pune from 01-06-1997 as Senior General Manager(IT) at Chnivhwad plant upto \n30-05-2000.\nJoined IBM Global Service for Ballarpur Paper Ltd \nSite In charge for group IT head from 01-07-2000 till \n31-08-2001.\nMoved to Vancouver BC Canada on 20-09-2001 as Permanent resident. Work a call center RMH as Supervisor for 3 year 6 months.\nSenior Sales consultant with The Brick for 10 years.\nAfter age 60 Self-employed as Independent Insurance Broker for Life and General Insurance as Designated Nominee Director.\nOwner and Director of Abha Financial Services Ltd from 02-10-2026 till date.",
+      "family": "13-05-1984 wedded Dr. Veena Jai Kakpure at Bhilai Tamil Bhavan. One son Ravi born on 04-05-1985 at Gurgaon.\nWife did MD(Microbiology) 1990-1993 from Government Medical College.\nShe is still working as Manager(QA) from 02-07-2003 till today for Enviro Health Research Labs Ltd.\nSon works for Canada Post as letter carrier and got wedded last year with Russian girl Helen.",
+      "memory": "In year 1971 I came to see late Chandrashaker Tiwari to see him in hostel C and college building. I was highly impressed. Few months later, accompanied by father came for admission in the month of July 1971. Joining NCC and Civil Defense activities are still fresh in memory.",
+      "participant_id": "jaikumar-shankerrao-kakpure",
+      "photos": [
+        {
+          "src": "/assets/profiles/jaikumar-shankerrao-kakpure/photo-1.jpg",
+          "caption": "Jaikumar Shankerrao Kakpure: Now",
+          "alt": "Jaikumar Shankerrao Kakpure photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/jaikumar-shankerrao-kakpure/photo-2.jpg",
+          "caption": "Birthday party at home",
+          "alt": "Jaikumar Shankerrao Kakpure photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/jaikumar-shankerrao-kakpure/photo-3.jpg",
+          "caption": "Our Family Photo Myself Spouse Son and Daughter In Law Wedding",
+          "alt": "Jaikumar Shankerrao Kakpure photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/jaikumar-shankerrao-kakpure/photo-4.jpg",
+          "caption": "At home with spouse",
+          "alt": "Jaikumar Shankerrao Kakpure photograph 4",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "name": "Jaiman Minj",
+      "nickname": "",
+      "branch": "Mechanical",
+      "email": "jaimanminj@gmail.com",
+      "phone": "6264457327",
+      "location": "Bhopal, M.P., India",
+      "education": "BE(MECH), MBA",
+      "career": "Joined BHEL as Engineer trainee in JAN 1977\nthen promoted from \nEngineer trainee _ to _ Engineer\nTo _ Senior Engineer\nTo_ Dy Manager\nTo_ Manager\nTo_ Sr Manager\nTo_ DGM\nTo_ Sr DGM\nTo_ AGM\nAnd Finally to GM in 2010, All posting till 2012 was in BHEL Bhopal, then in year 2012 transferred to \"Power Sector\" western region Nagpur \nAnd retired as GM in JUNE 2014.",
+      "family": "1. Wife \nDr. (Mrs.) Basanti Minj\nMBBS, MD(anesthesiologist)\nJoined Indian Railways through UPSC and retired as CMS (Chief Medical Superintendent)\n2. Vikrant Minj (Elder son)\nB.Tech. (Electrical), M.Tech. (Energy)\nWorking in BHEL Bhopal as Sr. Manager \n3. Dr. Aarti Minj w/o Vikrant Minj\nMBBS, MS(ophthalmologist), FVRS(Retina surgeon)\n4. Janessa Vivian Minj(3.5 yrs old) d/o Vikrant & Aarti minj \n5. Jerald Vaibhav Minj (Younger son)\nBE(CSE), MTech(IS)\nWorking as Assistant Manager at MPGB\n6. Annie Ankita Minj w/o Jerald Vaibhav Minj\nMBBS, MS(ophthalmologist), Medical Glaucoma specialist",
+      "memory": "In early days of 2nd year, I was days-scholar from Durg to Raipur. Once  I missed the train for Raipur and went Raipur by bus. That day it was lucky for me, as that very day, there was a Magisterial checking in the train. All were caught by Magistrate because mostly we were travelling without tickets and I was the lucky one to escape.",
+      "participant_id": "jaiman-minj",
+      "photos": [
+        {
+          "src": "/assets/profiles/jaiman-minj/photo-1.jpg",
+          "caption": "Jaiman Minj Now",
+          "alt": "Jaiman Minj photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/jaiman-minj/photo-2.jpg",
+          "caption": "Jaiman Minj Then (Taken from College ID)",
+          "alt": "Jaiman Minj photograph 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "name": "Jayant Diwakar Muley",
+      "nickname": "Muley",
+      "branch": "Civil",
+      "email": "jdmuley55@gmail.com",
+      "phone": "8600037799",
+      "location": "Nagpur, Iindia",
+      "education": "Batchlor of Engineering (Civil), 1976",
+      "career": "I began my career in July 1976 with Gannon Dunkerley & Co. Ltd. (GDC), a professionally managed company of repute specializing in civil and structural works including water & sewage treatment plants, overhead water tanks and chimneys.\nDuring my 30-year tenure with GDC, I worked as Project In-charge on many prestigious projects across India and abroad. Key projects include the 10 Cold Store Project in Iraq, Second Launch Pad for ISRO at Sriharikota, Chennai International Airport, Akash & Agni Missile Projects at Hyderabad, 2x210 MW Power Plant in Bihar and 3x500 MW NTPC Plant at Korba. I was also involved in construction of numerous cement plants, textile mills, pharmaceutical and automobile plants.\nFrom 1995, I served as General Manager-in-charge of Hyderabad and Mumbai Regional Offices, both operating as independent profit centres.\nI took early retirement from GDC in 2006 to start my own venture. The initial assignments were civil works for an 80 MW Power Plant for Hindustan Zinc Ltd. at Chittorgarh, a 400 kV Sub-station at Merta and civil & structural works for Uttam Galva Metallics at Wardha.\nWe undertake works pan-India and have executed projects in Maharashtra, Andhra Pradesh, Madhya Pradesh, Jharkhand, Karnataka and Gujarat. Since inception, the company has consistently attracted sufficient talent to achieve its targeted turnover and revenue. The company is healthy and maintains adequate resources, with a large team of technical, managerial staff and skilled workers engaged across sites to match the requirements.\nThe journey has been challenging, adventurous and thoroughly enjoyable. I plan to retire at 75 years of age.",
+      "family": "I met my wife Kiran at a family function in Gwalior in June 1982. A science graduate, she is quiet, amiable and very observant. She enjoys knitting and cooking. We married in June 1983.\nWe have two children.\n*Siddharth Muley:* Elder son, Engineer & MBA. After stints with UBS Bank and Gammon Infra, he now manages our construction business. He is married to Komal Kothavale Muley — MBA, Certified Career Analyst and founder of _Better You_ (bestseller book summary platform) and _Career Code_ (career support platform).\n*Dr Sonal Muley Pande:* Daughter, Ophthalmologist — MBBS, MS. Married to Dr Nikhil Pande — Oncologist, MD & DM from Tata Memorial Centre, Mumbai. Both are settled in Launceston, Tasmania, Australia.\nWe are a simple family who loves travelling, good food and trekking in hills and forests. Our favourite place is McLeod Ganj, HP.",
+      "memory": "My five years of engineering in the hostel were the golden years of my life.\nIt was a world in itself- a small shared room, common bathrooms ever debated mess food & friendships for a lifetime. \nMy close circle- Pawan, Umesh, Guha, Pinaki & many more- we were like brothers. Long late night discussions with endless chai - there was a funny incident every day. \nHostel taught me much more than engineering. It taught me sharing, adjusting, managing within limited pocket money & standing by friends.\nEven after 50 years, when we meet, we become same 20-year olds again.",
+      "participant_id": "jayant-diwakar-muley",
+      "photos": [
+        {
+          "src": "/assets/profiles/jayant-diwakar-muley/photo-1.jpg",
+          "caption": "Jayant D. Muley: Now",
+          "alt": "Jayant Diwakar Muley photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/jayant-diwakar-muley/photo-2.jpg",
+          "caption": "Jayant D. Muley with Family",
+          "alt": "Jayant Diwakar Muley photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/jayant-diwakar-muley/photo-3.jpg",
+          "caption": "With our daughter Dr Sonal & Son-in-law Dr Nikhil",
+          "alt": "Jayant Diwakar Muley photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/jayant-diwakar-muley/photo-4.jpg",
+          "caption": "With Mr. C.K. Verma & Mrs. Verma at Blue-mountains, Sydney, Australia.",
+          "alt": "Jayant Diwakar Muley photograph 4",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "name": "Nakib Ullah Khan",
+      "nickname": "Nakib",
+      "branch": "Mechanical",
+      "email": "anfin76077@gmail.com",
+      "phone": "9893376077",
+      "location": "Raipur, Iindia",
+      "education": "B.E.(Mech). CAIIB From Indian Institute of Banking & Finance",
+      "career": "Immediately after passing I was struggling for job. I joined Raipur Wire & Steels as Trainee Engineer but after completing training nature of job was tuff. I had two work for 12 hours and even on Sunday there was no holiday. So after one and half year I resigned and continued to apply for Govt. jobs.\nAt that time there was common presumption that Govt. jobs are safer. So I continued to appear for written tests and interview for Govt. undertaking companies, however in the meantime for short duration",
+      "family": "Two sons are both software engineers working in USA. Elder son has one daughter 4 years old.",
+      "memory": "When I was in first year, the engineering drawing classes were for 4 hours each. Dr. Saikhedkar Sir was our teacher. We enjoyed the moment when he used to say, ‘Wind Up Please’.",
+      "participant_id": "nakib-ullah-khan",
+      "photos": [
+        {
+          "src": "/assets/profiles/nakib-ullah-khan/photo-1.jpg",
+          "caption": "Nakib Khan Now",
+          "alt": "Nakib Ullah Khan photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/nakib-ullah-khan/photo-2.jpg",
+          "caption": "Nakib Khan with spouse",
+          "alt": "Nakib Ullah Khan photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/nakib-ullah-khan/photo-3.jpg",
+          "caption": "Nakib Khan with Family",
+          "alt": "Nakib Ullah Khan photograph 3",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "name": "Pawan Jain",
+      "nickname": "",
+      "branch": "Mining",
+      "email": "icejhsttwo@gmail.com",
+      "phone": "9415057564",
+      "location": "Jhansi (U.P.)",
+      "education": "B.E. (Mining)",
+      "career": "Joined the parental business of Mining in 1976 , successfully set up & commissioned a comprehensive mineral processing plant in 1976, mining operation were gradually converted into mechanized mining operation .In 1982 established a state of the art refrigerated warehouse (Cold Storage) facility in Jhansi .Founder of Eastern Refractories Pvt Ltd manufacturing high performance Refractory Bricks & Castable . Following structural family partition concentrated on cold chain business. Mining & Mineral processing is taken care of by family",
+      "family": "At the heart of our home is Priti a dedicated home maker whose warmth and unwavering support have been the quiet force behind all our collective achievements. I am blessed with 1 son & 2 daughters who have each charted remarkable professional path. Son looks after our family business .My both daughters have carved out successful lives & careers for themselves in the USA their achievements remain a profound source of pride for the entire family.",
+      "memory": "A student protest demanding the postponement of exams , a bus was set on fire by some students , resulting into my Journey to Raipur Jail in 1972 for 6 days .It was a sobering experience a story of activism & sacrifice .",
+      "participant_id": "pawan-jain",
+      "photos": [
+        {
+          "src": "/assets/profiles/pawan-jain/photo-1.jpg",
+          "caption": "Pawan Jain : Now",
+          "alt": "Pawan Jain photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/pawan-jain/photo-2.jpg",
+          "caption": "Pawan Jain with Spouse",
+          "alt": "Pawan Jain photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/pawan-jain/photo-3.jpg",
+          "caption": "",
+          "alt": "Pawan Jain photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/pawan-jain/photo-4.jpg",
+          "caption": "Pawan Jain with Family",
+          "alt": "Pawan Jain photograph 4",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "name": "Rajesh Kumar Shrivastava",
+      "nickname": "Rkshrivastava",
+      "branch": "Civil",
+      "email": "r.k.shri26@gmail.com",
+      "phone": "---",
+      "location": "Pune india",
+      "education": "B. E. Civil",
+      "career": "Worked in water resources depth. Mostly in hasdeo bango project. Korba.",
+      "family": "Wife Namita Shrivastava, M.Sc. She is from Senoi M.P. I have two daughters, both are software engineers and are working in M.N.C. Pune",
+      "memory": "---",
+      "participant_id": "rajesh-kumar-shrivastava",
+      "photos": [
+        {
+          "src": "/assets/profiles/rajesh-kumar-shrivastava/photo-1.jpg",
+          "caption": "Rajesh Kumar Shrivastava : Now",
+          "alt": "Rajesh Kumar Shrivastava photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/rajesh-kumar-shrivastava/photo-2.jpg",
+          "caption": "",
+          "alt": "Rajesh Kumar Shrivastava photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/rajesh-kumar-shrivastava/photo-3.jpg",
+          "caption": "Rajesh Kumar Shrivastava with Spouse",
+          "alt": "Rajesh Kumar Shrivastava photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/rajesh-kumar-shrivastava/photo-4.jpg",
+          "caption": "",
+          "alt": "Rajesh Kumar Shrivastava photograph 4",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "name": "Rajiv Charde",
+      "nickname": "Raju",
+      "branch": "Civil",
+      "email": "rbcharde1956@gmail.com",
+      "phone": "9822696736",
+      "location": "Nagpur India",
+      "education": "BE Civil and Post Graduate Diploma in Construction Management from IIM Ahmedabad. Founder member of Indian Concrete Institution.",
+      "career": "First two years with Gannon Dunkerley at IFFCO plant construction site@Phulpur. 8 years with Tata Consulting Engineers Mumbai. 8 years with BG Shirke construction company. From year 2000 till retirement in 2016 with SMS Infrastructure at various sites. Retired from there as Vice President. Varied work experience of tunnels, highway, railways dams, pre fab housing etc. Now I am working as consultant.",
+      "family": "I have two daughters both working abroad in USA and Ireland. My wife Savita was a mechanical engineer who was HOD at Govt Engineering college Amravati. Sadly lost her in a car accident",
+      "memory": "When I was thrashed by seniors ( won't take the names ) for silly mistake. Alas when we became senior it was Emergency period.",
+      "participant_id": "rajiv-charde",
+      "photos": [
+        {
+          "src": "/assets/profiles/rajiv-charde/photo-1.jpg",
+          "caption": "Rajiv Charde: Now",
+          "alt": "Rajiv Charde photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/rajiv-charde/photo-2.jpg",
+          "caption": "With college batchmates Utpal Ghosh and Uday Vadavi",
+          "alt": "Rajiv Charde photograph 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "name": "Rithik Choudhury",
+      "nickname": "",
+      "branch": "Chemical Engineering",
+      "email": "rithik1955@gmail.com",
+      "phone": "7587124705",
+      "location": "Bhilai",
+      "education": "I got admission in the year 1971 in engineering college. I got degree in chemical engineering in 1977. I passed PG diploma in business management in 1993 from Ravishankar University.",
+      "career": "After passing B. E. in chemical engineering, I got involved in various activities for job initiative. Then I joined Resinate chemical plant in 1979 at industrial state in Bhilai. In 1983 I joined Bhilai Refractories Plant in Bhilai. Now it is Sail Refractories Unit , a Sail Unit. I retired from there in 2015 February.",
+      "family": "I have a small family, me , my wife my daughter. My wife is a housewife. My daughter after passing M A in history from Delhi, and she joined other courses in Delhi.",
+      "memory": "I could remember many things . Maniram canteen near the Ayurvedic College . We used to go there every evening after college and end for evening snacks . Every Saturday we used to go to the railway station to go to Bhilai by the pave of the railway line side that was a very amazing experience . Often, we rent bicycles near the bicycle shop to go to the city. One day when I was returning to the hostel, I slipped on the road and fell down. I was lucky at that time road was empty. I could not forget the incident till today.",
+      "participant_id": "rithik-choudhury",
+      "photos": [
+        {
+          "src": "/assets/profiles/rithik-choudhury/photo-1.jpg",
+          "caption": "Rithik Choudhury: Now",
+          "alt": "Rithik Choudhury photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/rithik-choudhury/photo-2.jpg",
+          "caption": "Rithik Choudhury: Then",
+          "alt": "Rithik Choudhury photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/rithik-choudhury/photo-3.jpg",
+          "caption": "This photograph was taken at the time of Durga Puja after retirement in 2018",
+          "alt": "Rithik Choudhury photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/rithik-choudhury/photo-4.jpg",
+          "caption": "I captured this photograph at the time of Holi in 2019",
+          "alt": "Rithik Choudhury photograph 4",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "name": "Sheel Kant Pathak",
+      "nickname": "",
+      "branch": "Civil Engineering",
+      "email": "skpathak54@gmail.com",
+      "phone": "8085528240",
+      "location": "Raipur Chhattisgarh India",
+      "education": "B.E.",
+      "career": "1. After Graduation I served briefly in Water Resources Departments of Madhya Pradesh, then I served in Special Area Development Authority Durg. Then afterwards I joined Indian Oil Corporation Ltd. as Project Engineer in Guwahati. \n2. From 1977- 1981 I served in Bhilai Steel plant- SAIL as Construction Engineer (4 MT expansion).\n3. From 1981 to 2016 I served Water Resources Department of Chhattisgarh and retired as Chief Engineer. During this period I have designed, initiated and constructed various World Bank Aided Medium Irrigation projects like Chhirpani, Shyam Ghunghutta, Chando Diversion and Sutiyapat projects and many Major Irrigation Projects like Ravishankar Dam, Mahanadi Canal system and Hasdeo Bango Minimata Canal System, which are the agricultural life line of the State. \n4. As a passionate person of Literature, History, Social and culture, I engaged myself as a Hindi Poet and Writer with 02 Published books of poetry, And many published Articles and Poems in renowned magazines and Newspapers like Navbharat, Daink Bhaskar, Nayi Duniya Haribhoomi, Dainik Hindustan, Kadambani, Lokakshar, Vagarth, Vyangya Vividha, Nayi Gudgudi, Gagananchal, Indraprasth Bharati, Bhasha, Sakshatkar, Samkalin Bhartiya Sahitya, Akshara and many more.\n5. Principal Editor of \"Chhattisgarh Parikrama\".\n6. Well Known as Senior Poet, Writer of Chhattisgarh.",
+      "family": "Spouse - Dr. Archana Pathak, PhD (Classical Music), M.Sc.(Botany), LLB., Ayurved Ratna. Certification in movie making, Diploma in Classical Instruments (Sitar). \nworked as Editor of quarterly Hindi magazine \"Chhattisgarh Parikrama\". Founder of Cultural organization \"Sakar Srijan\". Worked as Anchor in Doordarshan and Akashwani Raipur for different cultural programs. She is a Poetess and Writer of many books published from Raj Bhasha Aayog and Sanskriti Vibhag of Chhattisgarh.\n\nAnniversary- 18 June.\n\nChildren - 1. Richa, Post graduate in Management from NMIMS Mumbai. B.E.(CSE) from Pt. Ravishankar Shukla University. worked as Software professional in the Clearing Corporation of India ltd Mumbai. District Skill Development Officer, Raipur. Currently working as Court Manager, Administrative wing of The High Court of Chhattisgarh.\n\n2. Neha, Post graduate in Management from IIM Raipur, BE(CSE) from NIT Raipur. worked as Software professional in HSBC and First Data Pune, currently working as Sr. Delivery Manager and Product Owner at TCS Bengaluru.\n\n3 Prachi, B.E.(CSE) from CSVTU Bhilai, pursuing post graduation in Mathematics. \nworking in School Education Department of Chhattisgarh.\n\nGrand Children - 1. Shaurya - a young dynamic girl with lots of dreams in her eyes.\n2. Vedant - A Tech Kid with expertise in his hands.\n3. Shrtik - Cute boy with bright smile.",
+      "memory": "In fourth/final year, I can't exactly remember the timeline but it was a turning point as I put on makeup for first and last time in my life for a group play of \"Guru Ghantal\". As I had never thought of Acting before even though I am a good actor in my family life. Me and My friends Narendra, Yogesh, RamaShankar and others under the initiation and motivation of Res. Prof Rajesh Pathak sir to act in that play which was praised and applauded in our Annual College Function and ultimately won a Best Play Award in the youth festival of Ravishankar University. This Award Enhanced my overall personality and made me self-Assured and confident that I can do the things which comes in my life path.",
+      "participant_id": "sheel-kant-pathak",
+      "photos": [
+        {
+          "src": "/assets/profiles/sheel-kant-pathak/photo-1.jpg",
+          "caption": "Sheel Kant Pathak: Now",
+          "alt": "Sheel Kant Pathak photograph 1",
+          "order": 1
+        },
+        {
+          "src": "/assets/profiles/sheel-kant-pathak/photo-2.jpg",
+          "caption": "Scenes from the play \"Guru Ghantal\", performing artists (from left to right - Narendra Thakkar, Ramashankar Gupta, Sheel Kant Pathak, Yogesh Degan. Also group photo of the award winning team",
+          "alt": "Sheel Kant Pathak photograph 2",
+          "order": 2
+        },
+        {
+          "src": "/assets/profiles/sheel-kant-pathak/photo-3.jpg",
+          "caption": "Family group photos with all three daughters, Son-in-laws and Grand Children",
+          "alt": "Sheel Kant Pathak photograph 3",
+          "order": 3
+        },
+        {
+          "src": "/assets/profiles/sheel-kant-pathak/photo-4.jpg",
+          "caption": "With my Better half in front of Palace of Versailles, France",
+          "alt": "Sheel Kant Pathak photograph 4",
+          "order": 4
+        }
+      ]
     }
-  ]
+  ],
+  "sourceAudit": {
+    "sourceDocument": "Compilation of GForm Inputs from Contributors - Vol 3.docx",
+    "sourcePages": 33,
+    "indexEntries": 15,
+    "profilesExtracted": 14,
+    "photographsExtracted": 42,
+    "indexOnlyEntries": [
+      {
+        "number": "45",
+        "name": "Bijan K. Dutta",
+        "branch": "Mechanical"
+      }
+    ]
+  }
 }

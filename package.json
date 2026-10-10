@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sync:data && vite build",
-    "preview": "vite preview",
-    "sync:data": "node sync-data.mjs"
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "sync:data": "node sync-data.mjs",
+    "pdf:generate": "python3 scripts/generate-pdfs.py"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
