@@ -48,3 +48,8 @@ Colours, fonts, ornaments, footer, identity-page design and the cover/index/clos
 - Added zoom out / zoom in buttons with a live percentage (click the percentage to return to fit-to-screen).
 - Keyboard: `+` zoom in, `-` zoom out, `0` fit. Ctrl/Cmd + scroll wheel over the page also zooms.
 - Zoomed pages scroll inside the reading frame; range 50%–300% of fit. PDF export is unaffected.
+
+## Cover redesign
+- Much larger gold "50" seal (lining figures), refined title block, and a new "Edited by Bijon Dutta" line.
+- The NIT Raipur campus gate rises from the foot of the page, tinted to the emerald palette and faded into the background (`public/assets/cover/campus-gate.webp`).
+- Applied to both the web reader and the downloadable PDFs (`scripts/generate-pdfs.py`).
