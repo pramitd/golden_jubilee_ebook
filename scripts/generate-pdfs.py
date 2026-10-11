@@ -52,11 +52,30 @@ def footer(canvas,doc):
     canvas.restoreState()
 def bg_cover(canvas,doc):
     canvas.saveState();w,h=A4;canvas.setFillColor(DEEP);canvas.rect(0,0,w,h,fill=1,stroke=0)
-    canvas.setStrokeColor(GOLD);canvas.setLineWidth(1);canvas.rect(12*mm,12*mm,w-24*mm,h-24*mm,fill=0,stroke=1)
-    canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.3));canvas.setLineWidth(.5);canvas.circle(w*.78,h*.76,58*mm,fill=0,stroke=1);canvas.circle(w*.78,h*.76,67*mm,fill=0,stroke=1)
+    # soft emerald lift toward the lower half of the page
+    for i in range(40):
+        t=i/39;canvas.setFillColor(colors.Color(.05+.07*t,.22+.14*t,.18+.12*t));canvas.rect(0,h*(1-(i+1)/40),w,h/40+1,fill=1,stroke=0)
+    # campus gate, faded into the background (pre-faded image with transparency)
+    gate=ROOT/'public'/'assets'/'cover'/'campus-gate.webp'
+    if gate.exists():
+        try:
+            import tempfile
+            png=Path(tempfile.gettempdir())/'gj_cover_gate.png'
+            PILImage.open(gate).convert('RGBA').save(png)
+            gw=w-24*mm;gh=gw*947/1700
+            canvas.drawImage(str(png),12*mm,12*mm,width=gw,height=gh,mask='auto')
+        except Exception as e:print('cover image skipped:',e)
+    canvas.setStrokeColor(GOLD);canvas.setLineWidth(.8);canvas.rect(12*mm,12*mm,w-24*mm,h-24*mm,fill=0,stroke=1)
+    # large "50" seal
+    cx,cy,r=w/2,h-60*mm,29*mm
+    canvas.setFillColor(colors.Color(.04,.25,.20));canvas.circle(cx,cy,r,fill=1,stroke=0)
+    canvas.setStrokeColor(GOLD);canvas.setLineWidth(1.6);canvas.circle(cx,cy,r,fill=0,stroke=1)
+    canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.55));canvas.setLineWidth(.6);canvas.circle(cx,cy,r+3.2*mm,fill=0,stroke=1)
+    canvas.setFillColor(colors.HexColor('#E9CF8E'));canvas.setFont('BookSerif-Bold',88);canvas.drawCentredString(cx,cy-30,'50')
+    canvas.setFillColor(GOLD);canvas.setFont('BookSans-Bold',11);canvas.drawCentredString(w/2,h-27*mm,'\u2726      \u2726      \u2726')
     canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.5));canvas.line(20*mm,17*mm,w-20*mm,17*mm)
-    canvas.setFont('BookSans-Bold',7);canvas.setFillColor(LIGHTGOLD);canvas.drawString(21*mm,11.5*mm,'GOLDEN JUBILEE • NIT RAIPUR')
-    canvas.drawRightString(w-21*mm,11.5*mm,'boroai.in');canvas.restoreState()
+    canvas.setFont('BookSans-Bold',7);canvas.setFillColor(LIGHTGOLD);canvas.drawString(21*mm,13.2*mm,'GOLDEN JUBILEE \u2022 NIT RAIPUR')
+    canvas.drawRightString(w-21*mm,13.2*mm,'boroai.in');canvas.restoreState()
 LOW_MODE=False
 def img_flow(path,maxw,maxh):
     try:
@@ -77,7 +96,7 @@ def build_pdf(path, low=False):
     doc=SimpleDocTemplate(str(path),pagesize=A4,rightMargin=20*mm,leftMargin=20*mm,topMargin=21*mm,bottomMargin=23*mm,title='Golden Jubilee ’76 — NIT Raipur',author='boroai.in')
     story=[]
     # Cover: purpose-designed typographic page
-    story += [Spacer(1,43*mm),Paragraph('GOLDEN JUBILEE  •  THE CLASS OF 1976',styles['CoverEyebrow']),Spacer(1,8*mm),Paragraph('Golden Jubilee<br/>’76',styles['CoverTitle']),HRFlowable(width='32%',thickness=1.2,color=GOLD,hAlign='CENTER',spaceBefore=5*mm,spaceAfter=7*mm),Paragraph('Golden Jubilee Celebration · NIT Raipur',styles['CoverSub']),Spacer(1,4*mm),Paragraph('A commemorative album of lives, friendships, family and memories',styles['CoverNote']),Spacer(1,15*mm),Paragraph('1976&nbsp;&nbsp; — &nbsp;&nbsp;2026',ParagraphStyle('years',fontName='BookSerif',fontSize=19,leading=24,textColor=LIGHTGOLD,alignment=TA_CENTER)),Spacer(1,12*mm),Paragraph('NATIONAL INSTITUTE OF TECHNOLOGY · RAIPUR',ParagraphStyle('inst',fontName='BookSans-Bold',fontSize=7,leading=10,textColor=LIGHTGOLD,alignment=TA_CENTER))]
+    story += [Spacer(1,78*mm),Paragraph('GOLDEN JUBILEE  •  THE CLASS OF 1976',styles['CoverEyebrow']),Spacer(1,3*mm),Paragraph('Golden Jubilee ’76',ParagraphStyle('ct',parent=styles['CoverTitle'],fontSize=33,leading=38,spaceAfter=0)),HRFlowable(width='26%',thickness=1,color=GOLD,hAlign='CENTER',spaceBefore=4*mm,spaceAfter=5*mm),Paragraph('Golden Jubilee Celebration · NIT Raipur',ParagraphStyle('cs',parent=styles['CoverSub'],fontSize=14,leading=18,spaceAfter=3)),Paragraph('A commemorative album of lives, friendships, family and memories',ParagraphStyle('cn',parent=styles['CoverNote'],fontSize=10.5,leading=15,spaceAfter=10)),Paragraph('1976&nbsp;&nbsp; — &nbsp;&nbsp;2026',ParagraphStyle('years',fontName='BookSerif',fontSize=17,leading=22,textColor=LIGHTGOLD,alignment=TA_CENTER)),Spacer(1,3*mm),Paragraph('NATIONAL INSTITUTE OF TECHNOLOGY · RAIPUR',ParagraphStyle('inst',fontName='BookSans-Bold',fontSize=6.5,leading=9,textColor=LIGHTGOLD,alignment=TA_CENTER)),Spacer(1,6*mm),Paragraph('E D I T E D &nbsp; B Y',ParagraphStyle('edl',fontName='BookSans-Bold',fontSize=6.5,leading=9,textColor=GOLD,alignment=TA_CENTER)),Spacer(1,1.5*mm),Paragraph('Bijon Dutta',ParagraphStyle('edn',fontName='BookSerif-Italic',fontSize=19,leading=24,textColor=colors.HexColor('#FFF2D3'),alignment=TA_CENTER))]
     story.append(PageBreak())
     # index
     story += [Paragraph('THE CONTRIBUTORS',styles['Section']),Paragraph('A lifetime, in names',styles['Display']),Paragraph('The contributor index as provided in the source compilation.',styles['BodyBook']),Spacer(1,4*mm)]
