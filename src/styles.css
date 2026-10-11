@@ -186,3 +186,72 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 
 /* Match the folio geometry across all A4 pages and both publication formats. */
 .paper .folio,.pdf-sheet .folio{left:19mm!important;right:19mm!important;bottom:8mm!important;}
+
+
+/* V3.8 correction: print one complete A4 portrait sheet per PDF page. */
+@page { size: A4 portrait; margin: 0; }
+.pdf-export { width: 210mm !important; margin: 0 auto !important; }
+.pdf-sheet {
+  width: 210mm !important; height: 297mm !important;
+  min-height: 297mm !important; max-height: 297mm !important;
+  overflow: hidden !important; box-sizing: border-box !important;
+  break-after: page !important; page-break-after: always !important;
+  break-inside: avoid !important; page-break-inside: avoid !important;
+}
+.pdf-sheet:last-child { break-after: auto !important; page-break-after: auto !important; }
+.pdf-sheet .paper { width: 210mm !important; height: 297mm !important; }
+.pdf-sheet .photo-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8mm !important; align-items: stretch !important; }
+.pdf-sheet .photo-grid.count-1 { grid-template-columns: minmax(0, 1fr) !important; }
+.pdf-sheet .photo-grid .photo-card { width: 100% !important; min-width: 0 !important; }
+.pdf-sheet .photo-grid .photo-mat { min-width: 0 !important; }
+.pdf-sheet .photo-grid .photo-mat img { max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; }
+.pdf-sheet .photo-grid .photo-card figcaption { white-space: pre-wrap !important; overflow: visible !important; max-height: none !important; }
+
+/* Compact story flow: multiple sections from the same alumnus share a page. */
+.combined-story-page .paper-frame{padding-bottom:16%!important;}
+.combined-story-kicker{margin-top:5%;margin-bottom:4%;}
+.combined-story-body{font:clamp(13px,1.28vw,15.5px)/1.32 'Cormorant Garamond',Georgia,serif;color:#39443a;overflow-wrap:anywhere;}
+.combined-story-section{break-inside:avoid;}
+.combined-story-section h2{font:500 clamp(24px,3vw,34px)/.98 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:7px 0 5px;}
+.combined-story-section .gold-rule{width:42px;height:1.5px;margin:7px 0 10px;}
+.combined-story-section p{margin:0 0 .65em;white-space:pre-wrap;overflow-wrap:anywhere;}
+.pdf-sheet .combined-story-page .paper-frame{padding:19mm 19mm 29mm!important;}
+.pdf-sheet .combined-story-kicker{margin-top:7mm;margin-bottom:4mm;}
+.pdf-sheet .combined-story-body{font-size:11pt;line-height:1.27;}
+.pdf-sheet .combined-story-section h2{font-size:21pt;margin:5pt 0 3pt;}
+.pdf-sheet .combined-story-section .gold-rule{margin:4pt 0 7pt;}
+.pdf-sheet .combined-story-section p{margin-bottom:4.5pt;}
+
+/* ===== V4 compact flow ==================================================================
+   One continuous flow per alumnus. These rules are deliberately independent of viewport units and
+   of .pdf-sheet / .pagination-probe ancestry, so the browser measurement, the reader and the PDF
+   export all lay a page out identically. Colours, fonts and ornaments are unchanged. */
+.paper.flow-page .paper-frame{padding:19mm 19mm 30mm!important;overflow:hidden!important;}
+.paper.flow-page .folio{left:19mm!important;right:19mm!important;bottom:8mm!important;z-index:5;background:var(--paper);}
+.paper.flow-page.identity-page{background:linear-gradient(145deg,#fcf8ee,#f2e9d7);}
+.paper.flow-page.identity-page .identity-head{padding-bottom:4mm!important;}
+.paper.flow-page.identity-page .identity-layout{margin-top:6mm!important;gap:5%!important;grid-template-columns:minmax(0,1fr) minmax(0,.68fr)!important;}
+.paper.flow-page.identity-page .profile-name{font-size:43px!important;line-height:.96!important;overflow-wrap:anywhere;}
+.paper.flow-page.identity-page .profile-nickname{font-size:16px!important;margin:7px 0!important;}
+.paper.flow-page.identity-page .identity-meta{font-size:13px!important;gap:4px!important;margin-top:10px!important;}
+.paper.flow-page.identity-page .hero-photo{padding:5px!important;}
+.paper.flow-page.identity-page .hero-photo img{max-height:43mm!important;height:auto!important;}
+.paper.flow-page.identity-page .profile-details{margin-top:4mm!important;gap:0 18px!important;}
+.paper.flow-page.identity-page .detail-item{padding:4px 0!important;min-width:0;}
+.paper.flow-page.identity-page .detail-item span{font-size:7px!important;letter-spacing:.12em!important;}
+.paper.flow-page.identity-page .detail-item p{font-size:12px!important;line-height:1.22!important;margin-top:4px!important;overflow-wrap:anywhere!important;word-break:break-word!important;white-space:pre-wrap!important;}
+.paper.flow-page .identity-bottom{display:none!important;}
+.flow-body{margin-top:6mm;}
+.flow-section{margin:0 0 5mm;}
+.flow-section h2{font:500 21pt/1 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:0;}
+.flow-section.is-cont h2{font-size:15pt;}
+.flow-section .gold-rule{width:42px;height:1.5px;margin:7px 0 10px;}
+.flow-section p{margin:0 0 4pt;font:400 11.5pt/1.34 'Cormorant Garamond',Georgia,serif;color:#39443a;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;orphans:2;widows:2;}
+.flow-photos-head{margin:1mm 0 4mm;}
+.flow-photos-head h2{font:500 21pt/1 'Cormorant Garamond',serif;color:var(--emerald-deep);margin:6px 0 0;}
+.flow-photos-head .gold-rule{width:42px;height:1.5px;margin:7px 0 0;}
+.flow-photo-row{display:flex;justify-content:center;align-items:flex-start;gap:6mm;margin:0 0 5mm;}
+.flow-photo-row .photo-card{flex:0 0 auto;margin:0;min-width:0;display:block;height:auto;padding:8px;background:#fffdf6;border:1px solid #d7c9a8;box-shadow:0 8px 24px #24392d13;}
+.flow-photo-row .photo-mat{display:flex;align-items:center;justify-content:center;padding:6px;background:linear-gradient(145deg,#eee8d8,#e3e5d9);min-height:0;height:auto;flex:none;}
+.flow-photo-row .photo-mat img{display:block;max-width:none;max-height:none;object-fit:contain;}
+.flow-photo-row .photo-card figcaption{padding:8px 3px 2px;font:italic 10pt/1.25 'Cormorant Garamond',serif;text-align:center;color:#435247;white-space:pre-wrap;overflow-wrap:anywhere;max-height:none;overflow:visible;}
