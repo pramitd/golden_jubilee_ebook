@@ -125,7 +125,7 @@ def build_pdf(path, low=False):
         rows.append([Paragraph(f'{i+1:02d}',ParagraphStyle('n'+str(i),fontName='BookSans',fontSize=8,textColor=GOLD)),Paragraph(esc(p['name']),styles['IndexName']),Paragraph(esc(p['branch']),styles['IndexBranch'])])
     tab=Table(rows,colWidths=[11*mm,83*mm,62*mm],repeatRows=0,hAlign='LEFT')
     tab.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LINEBELOW',(0,0),(-1,-1),.35,LINE),('LEFTPADDING',(0,0),(-1,-1),3),('RIGHTPADDING',(0,0),(-1,-1),5),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]));story.append(tab)
-    story += [Spacer(1,7*mm),Paragraph('Bijan K. Dutta appears in the source index; a corresponding profile was not present in the supplied Word compilation. No profile content has been invented.',styles['SmallNote']),PageBreak()]
+    story += [PageBreak()]
     for participant_index, p in enumerate(DATA['participants']):
         # Each alumnus starts on a fresh page, regardless of whether the previous
         # alumnus had any photographs or story text.
