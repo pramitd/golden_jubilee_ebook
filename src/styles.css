@@ -255,3 +255,11 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 .flow-photo-row .photo-mat{display:flex;align-items:center;justify-content:center;padding:6px;background:linear-gradient(145deg,#eee8d8,#e3e5d9);min-height:0;height:auto;flex:none;}
 .flow-photo-row .photo-mat img{display:block;max-width:none;max-height:none;object-fit:contain;}
 .flow-photo-row .photo-card figcaption{padding:8px 3px 2px;font:italic 10pt/1.25 'Cormorant Garamond',serif;text-align:center;color:#435247;white-space:pre-wrap;overflow-wrap:anywhere;max-height:none;overflow:visible;}
+
+/* Reader zoom: the page scales inside a scrollable frame so zoomed-in pages can be panned. */
+.page-scroll{display:flex;width:100%;max-height:calc(100vh - 215px);overflow:auto;overscroll-behavior:contain;}
+.page-scroll .book-viewport{margin:auto!important;flex:0 0 auto;}
+.zoom-controls{display:flex;align-items:center;gap:6px;margin-left:10px;padding-left:20px;border-left:1px solid #c9bd9b;}
+.controls .zoom-controls button{width:30px;height:30px;font-size:19px;}
+.controls .zoom-controls .zoom-reset{width:auto;min-width:58px;padding:0 8px;border-radius:15px;font-size:10px;font-weight:700;letter-spacing:.08em;}
+@media(max-width:650px){.page-scroll{max-height:none;}.controls{flex-wrap:wrap;gap:14px}.zoom-controls{margin-left:0;padding-left:0;border-left:0}}
