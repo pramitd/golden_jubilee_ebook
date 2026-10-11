@@ -53,3 +53,10 @@ Colours, fonts, ornaments, footer, identity-page design and the cover/index/clos
 - Much larger gold "50" seal (lining figures), refined title block, and a new "Edited by Bijon Dutta" line.
 - The NIT Raipur campus gate rises from the foot of the page, tinted to the emerald palette and faded into the background (`public/assets/cover/campus-gate.webp`).
 - Applied to both the web reader and the downloadable PDFs (`scripts/generate-pdfs.py`).
+
+## Closing page redesign
+- Same large gold "50" seal as the cover, the "Edited by Bijon Dutta" credit, and the closing line "Years pass. Friendship remains." on the dark emerald background.
+- Applied to both the web reader and the downloadable PDFs (the PDF closing page is now dark like the cover).
+
+## Download buttons
+- Header buttons read "DOWNLOAD LOW RES ↓" and "DOWNLOAD HIGH RES ↓" (the two files genuinely differ in size and photo resolution).

@@ -40,7 +40,30 @@ def has_meaningful_content(value):
     return not re.fullmatch(r'(?:[-–—_•.\s]|n/?a|none|not applicable)+', text, flags=re.I)
 def esc(s):
     return str(s or '').replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('\n','<br/>')
+CLOSING=False
+from reportlab.platypus import Flowable
+class SetClosing(Flowable):
+    """Zero-size marker: the page that starts after this flowable is the dark closing page."""
+    def wrap(self,aw,ah):return (0,0)
+    def draw(self):
+        global CLOSING;CLOSING=True
+def seal_50(canvas,cx,cy,r):
+    canvas.setFillColor(colors.Color(.04,.25,.20));canvas.circle(cx,cy,r,fill=1,stroke=0)
+    canvas.setStrokeColor(GOLD);canvas.setLineWidth(1.6);canvas.circle(cx,cy,r,fill=0,stroke=1)
+    canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.55));canvas.setLineWidth(.6);canvas.circle(cx,cy,r+3.2*mm,fill=0,stroke=1)
+    canvas.setFillColor(colors.HexColor('#E9CF8E'));canvas.setFont('BookSerif-Bold',88);canvas.drawCentredString(cx,cy-30,'50')
+def bg_closing(canvas,doc):
+    canvas.saveState();w,h=A4;canvas.setFillColor(DEEP);canvas.rect(0,0,w,h,fill=1,stroke=0)
+    for i in range(40):
+        t=i/39;canvas.setFillColor(colors.Color(.05+.07*t,.22+.14*t,.18+.12*t));canvas.rect(0,h*(1-(i+1)/40),w,h/40+1,fill=1,stroke=0)
+    canvas.setStrokeColor(GOLD);canvas.setLineWidth(.8);canvas.rect(12*mm,12*mm,w-24*mm,h-24*mm,fill=0,stroke=1)
+    seal_50(canvas,w/2,h-92*mm,29*mm)
+    canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.5));canvas.line(20*mm,17*mm,w-20*mm,17*mm)
+    canvas.setFont('BookSans-Bold',7);canvas.setFillColor(LIGHTGOLD);canvas.drawString(21*mm,13.2*mm,'GOLDEN JUBILEE \u2022 1976\u20132026')
+    canvas.drawCentredString(w/2,13.2*mm,str(doc.page));canvas.drawRightString(w-21*mm,13.2*mm,'boroai.in');canvas.restoreState()
 def footer(canvas,doc):
+    if CLOSING:
+        return bg_closing(canvas,doc)
     canvas.saveState(); w,h=A4
     canvas.setFillColor(PAPER);canvas.rect(0,0,w,h,fill=1,stroke=0)
     # double hairline border / understated gold frame
@@ -66,12 +89,7 @@ def bg_cover(canvas,doc):
             canvas.drawImage(str(png),12*mm,12*mm,width=gw,height=gh,mask='auto')
         except Exception as e:print('cover image skipped:',e)
     canvas.setStrokeColor(GOLD);canvas.setLineWidth(.8);canvas.rect(12*mm,12*mm,w-24*mm,h-24*mm,fill=0,stroke=1)
-    # large "50" seal
-    cx,cy,r=w/2,h-60*mm,29*mm
-    canvas.setFillColor(colors.Color(.04,.25,.20));canvas.circle(cx,cy,r,fill=1,stroke=0)
-    canvas.setStrokeColor(GOLD);canvas.setLineWidth(1.6);canvas.circle(cx,cy,r,fill=0,stroke=1)
-    canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.55));canvas.setLineWidth(.6);canvas.circle(cx,cy,r+3.2*mm,fill=0,stroke=1)
-    canvas.setFillColor(colors.HexColor('#E9CF8E'));canvas.setFont('BookSerif-Bold',88);canvas.drawCentredString(cx,cy-30,'50')
+    seal_50(canvas,w/2,h-60*mm,29*mm)
     canvas.setFillColor(GOLD);canvas.setFont('BookSans-Bold',11);canvas.drawCentredString(w/2,h-27*mm,'\u2726      \u2726      \u2726')
     canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.5));canvas.line(20*mm,17*mm,w-20*mm,17*mm)
     canvas.setFont('BookSans-Bold',7);canvas.setFillColor(LIGHTGOLD);canvas.drawString(21*mm,13.2*mm,'GOLDEN JUBILEE \u2022 NIT RAIPUR')
@@ -93,6 +111,8 @@ def img_flow(path,maxw,maxh):
     except Exception:return None
 
 def build_pdf(path, low=False):
+    global CLOSING
+    CLOSING=False   # reset per build: only the page after the SetClosing marker is the dark closing page
     doc=SimpleDocTemplate(str(path),pagesize=A4,rightMargin=20*mm,leftMargin=20*mm,topMargin=21*mm,bottomMargin=23*mm,title='Golden Jubilee ’76 — NIT Raipur',author='boroai.in')
     story=[]
     # Cover: purpose-designed typographic page
@@ -188,7 +208,17 @@ def build_pdf(path, low=False):
             story.append(KeepTogether(block))
             # No forced page break: the next pair follows if it fits, otherwise it moves on
             # naturally (each pair and its captions are kept together).
-    story += [PageBreak(),Spacer(1,50*mm),Paragraph('GOLDEN JUBILEE · 1976–2026',styles['Section']),Paragraph('Years pass.<br/><i>Friendship remains.</i>',ParagraphStyle('closing',fontName='BookSerif',fontSize=34,leading=36,textColor=DEEP,alignment=TA_CENTER,spaceAfter=12*mm)),HRFlowable(width='30%',thickness=1,color=GOLD,hAlign='CENTER',spaceAfter=10*mm),Paragraph('To the classmates, families and memories that made this journey extraordinary.',ParagraphStyle('closetext',fontName='BookSerif-Italic',fontSize=14,leading=20,textColor=MUTED,alignment=TA_CENTER))]
+    cream=colors.HexColor('#FFF4DD')
+    story += [SetClosing(),PageBreak(),Spacer(1,107*mm),
+        Paragraph('GOLDEN JUBILEE  ·  1976–2026',ParagraphStyle('ck',fontName='BookSans-Bold',fontSize=7.5,leading=11,textColor=LIGHTGOLD,alignment=TA_CENTER,spaceAfter=7)),
+        Paragraph('Years pass.<br/><i>Friendship remains.</i>',ParagraphStyle('closing',fontName='BookSerif',fontSize=31,leading=37,textColor=cream,alignment=TA_CENTER,spaceAfter=6*mm)),
+        HRFlowable(width='26%',thickness=1,color=GOLD,hAlign='CENTER',spaceAfter=6*mm),
+        Paragraph('To the classmates, families and memories that made this journey extraordinary.',ParagraphStyle('closetext',fontName='BookSerif-Italic',fontSize=12,leading=17,textColor=colors.HexColor('#E7E1CF'),alignment=TA_CENTER,leftIndent=22*mm,rightIndent=22*mm,spaceAfter=7*mm)),
+        Paragraph('NIT RAIPUR  ·  THE CLASS OF 1976',ParagraphStyle('cinst',fontName='BookSans-Bold',fontSize=6.5,leading=9,textColor=LIGHTGOLD,alignment=TA_CENTER)),
+        Spacer(1,9*mm),
+        Paragraph('E D I T E D &nbsp; B Y',ParagraphStyle('edl2',fontName='BookSans-Bold',fontSize=6.5,leading=9,textColor=GOLD,alignment=TA_CENTER)),
+        Spacer(1,1.5*mm),
+        Paragraph('Bijon Dutta',ParagraphStyle('edn2',fontName='BookSerif-Italic',fontSize=19,leading=24,textColor=cream,alignment=TA_CENTER))]
     doc.build(story,onFirstPage=bg_cover,onLaterPages=footer)
 
 high=OUT/'golden-jubilee-high-resolution.pdf'; low=OUT/'golden-jubilee-low-resolution.pdf'
