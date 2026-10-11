@@ -23,11 +23,12 @@ styles.add(ParagraphStyle(name='CoverSub',fontName='BookSerif',fontSize=18,leadi
 styles.add(ParagraphStyle(name='CoverNote',fontName='BookSerif-Italic',fontSize=13,leading=19,textColor=colors.HexColor('#E7E1CF'),alignment=TA_CENTER,spaceAfter=18))
 styles.add(ParagraphStyle(name='Section',fontName='BookSans-Bold',fontSize=8,leading=11,textColor=EM,spaceBefore=2,spaceAfter=8,uppercase=True))
 styles.add(ParagraphStyle(name='Display',fontName='BookSerif',fontSize=32,leading=32,textColor=DEEP,spaceAfter=10))
+styles.add(ParagraphStyle(name='StoryHead',fontName='BookSerif',fontSize=22,leading=24,textColor=DEEP,spaceBefore=3,spaceAfter=5,keepWithNext=1))
 styles.add(ParagraphStyle(name='Name',fontName='BookSerif',fontSize=31,leading=30,textColor=DEEP,spaceAfter=8))
 styles.add(ParagraphStyle(name='SubName',fontName='BookSerif-Italic',fontSize=16,leading=19,textColor=colors.HexColor('#A17C38'),spaceAfter=12))
 styles.add(ParagraphStyle(name='Meta',fontName='BookSerif',fontSize=12,leading=16,textColor=EM,spaceAfter=4))
 styles.add(ParagraphStyle(name='Label',fontName='BookSans-Bold',fontSize=7,leading=10,textColor=EM,spaceAfter=4))
-styles.add(ParagraphStyle(name='BodyBook',fontName='BookSerif',fontSize=11.2,leading=16.1,textColor=INK,spaceAfter=9,allowWidows=0,allowOrphans=0))
+styles.add(ParagraphStyle(name='BodyBook',fontName='BookSerif',fontSize=11.2,leading=16.1,textColor=INK,spaceAfter=7,allowWidows=0,allowOrphans=0))
 styles.add(ParagraphStyle(name='CaptionBook',fontName='BookSerif-Italic',fontSize=9.2,leading=12,textColor=INK,alignment=TA_CENTER,spaceBefore=7,spaceAfter=8))
 styles.add(ParagraphStyle(name='IndexName',fontName='BookSerif-Bold',fontSize=10,leading=13,textColor=DEEP))
 styles.add(ParagraphStyle(name='IndexBranch',fontName='BookSans',fontSize=7,leading=9,textColor=MUTED))
@@ -56,10 +57,19 @@ def bg_cover(canvas,doc):
     canvas.setStrokeColor(colors.Color(.8,.65,.36,alpha=.5));canvas.line(20*mm,17*mm,w-20*mm,17*mm)
     canvas.setFont('BookSans-Bold',7);canvas.setFillColor(LIGHTGOLD);canvas.drawString(21*mm,11.5*mm,'GOLDEN JUBILEE • NIT RAIPUR')
     canvas.drawRightString(w-21*mm,11.5*mm,'boroai.in');canvas.restoreState()
+LOW_MODE=False
 def img_flow(path,maxw,maxh):
     try:
         im=PILImage.open(path);w,h=im.size
         scale=min(maxw/w,maxh/h)
+        if LOW_MODE:
+            # Sharing edition: downsample to ~130 dpi at the printed size and re-encode as JPEG.
+            import io,hashlib
+            px=int(max(w*scale,h*scale)/72*130)
+            im2=im.convert('RGB');im2.thumbnail((max(px,64),max(px,64)))
+            out=Path(os.environ.get('TMPDIR','/tmp'))/('gj_low_'+hashlib.md5(str(path).encode()).hexdigest()+'.jpg')
+            im2.save(out,'JPEG',quality=72)
+            return Image(str(out),width=w*scale,height=h*scale)
         return Image(str(path),width=w*scale,height=h*scale)
     except Exception:return None
 
@@ -77,7 +87,12 @@ def build_pdf(path, low=False):
     tab=Table(rows,colWidths=[11*mm,83*mm,62*mm],repeatRows=0,hAlign='LEFT')
     tab.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LINEBELOW',(0,0),(-1,-1),.35,LINE),('LEFTPADDING',(0,0),(-1,-1),3),('RIGHTPADDING',(0,0),(-1,-1),5),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]));story.append(tab)
     story += [Spacer(1,7*mm),Paragraph('Bijan K. Dutta appears in the source index; a corresponding profile was not present in the supplied Word compilation. No profile content has been invented.',styles['SmallNote']),PageBreak()]
-    for p in DATA['participants']:
+    for participant_index, p in enumerate(DATA['participants']):
+        # Each alumnus starts on a fresh page, regardless of whether the previous
+        # alumnus had any photographs or story text.
+        if participant_index > 0:
+            story.append(PageBreak())
+
         # opening page: use the first source photograph as the portrait
         story += [Paragraph('THE CLASS OF 1976  ·  AN ALUMNUS PROFILE',styles['Section'])]
         photo=p.get('photos',[])
@@ -88,52 +103,81 @@ def build_pdf(path, low=False):
         identity.append(Paragraph(esc(p.get('branch','')),styles['Meta']))
         identity.append(Paragraph(esc(p.get('location','')),styles['Meta']))
         if hero:
-            hero_caption=photo[0].get('caption') or 'Recent photograph'
-            right=[hero,Paragraph(esc(hero_caption),styles['CaptionBook'])]
+            hero_caption=photo[0].get('caption') or ''   # only the caption supplied in the source; never invented
+            right=[hero]+([Paragraph(esc(hero_caption),styles['CaptionBook'])] if hero_caption else [])
             hero_table=Table([[identity,right]],colWidths=[83*mm,65*mm],hAlign='LEFT')
-        else: hero_table=Table([[identity,Paragraph('Photograph not available in source.',styles['CaptionBook'])]],colWidths=[83*mm,65*mm])
+        else: hero_table=Table([[identity,'']],colWidths=[83*mm,65*mm])
         hero_table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),6*mm),('TOPPADDING',(0,0),(-1,-1),3*mm),('BOTTOMPADDING',(0,0),(-1,-1),5*mm)]));story.append(hero_table)
         story.append(HRFlowable(width='100%',thickness=.8,color=GOLD,spaceBefore=5*mm,spaceAfter=4*mm))
         detailrows=[]
         for label,key in [('EDUCATION & QUALIFICATIONS','education'),('CURRENT LOCATION','location'),('EMAIL','email'),('PHONE','phone')]:
             detailrows.append([Paragraph(label,styles['Label']),Paragraph(esc(p.get(key,'') or '—'),styles['BodyBook'])])
         dt=Table(detailrows,colWidths=[43*mm,105*mm],hAlign='LEFT');dt.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LINEBELOW',(0,0),(-1,-1),.35,LINE),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),5*mm),('TOPPADDING',(0,0),(-1,-1),4*mm),('BOTTOMPADDING',(0,0),(-1,-1),2*mm)]));story.append(dt)
-        story.append(PageBreak())
+        # No forced break here: the story continues directly beneath the identity block and
+        # flows onto following pages only when the page is genuinely full.
+        story.append(Spacer(1,5*mm))
         story.append(Paragraph(esc(p['name'])+'  ·  THE STORY',styles['Section']))
         for key,title in [('career','Professional Journey'),('family','Family'),('memory','A Memory from College Days')]:
             txt=(p.get(key) or '').strip()
             if not has_meaningful_content(txt):continue
-            heading=[Paragraph(esc(title),styles['Display']),HRFlowable(width='28%',thickness=1,color=GOLD,hAlign='LEFT',spaceAfter=5*mm)]
+            heading=[Paragraph(esc(title),styles['StoryHead']),HRFlowable(width='28%',thickness=1,color=GOLD,hAlign='LEFT',spaceAfter=3*mm)]
+            heading[0].keepWithNext=True; heading[1].keepWithNext=True
             story.extend(heading)
             # Paragraph objects naturally split across pages; preserve all source paragraphs/line breaks.
             for para in txt.split('\n'):
                 if para.strip():story.append(Paragraph(esc(para),styles['BodyBook']))
                 else:story.append(Spacer(1,2*mm))
-            story.append(Spacer(1,7*mm))
-        # Start photographs on a fresh page after the complete story; each photo and caption remain together.
-        story.append(PageBreak())
-        # All source photos; every photo gets a caption if one exists, no crop.
-        photos=p.get('photos',[])[1:]
-        for j in range(0,len(photos),1):
-            group=photos[j:j+1]
-            story += [Paragraph(esc(p['name'])+'  ·  PHOTOGRAPHS & MEMORIES',styles['Section']),Paragraph('Moments, held close',styles['Display']),HRFlowable(width='28%',thickness=1,color=GOLD,hAlign='LEFT',spaceAfter=6*mm)]
-            cells=[]
+            story.append(Spacer(1,3*mm))
+        # Let photographs follow the story naturally instead of forcing a new page.
+        # This recovers unused space while keeping all content within this alumnus.
+        # The first photo is already used on the identity page; all remaining source
+        # photos are retained, with their original captions and without cropping.
+        photos = p.get('photos', [])[1:]
+        photo_heading = [
+            Paragraph(esc(p['name']) + '  ·  PHOTOGRAPHS & MEMORIES', styles['Section']),
+            Paragraph('Moments, held close', styles['StoryHead']),
+            HRFlowable(width='28%', thickness=1, color=GOLD, hAlign='LEFT', spaceAfter=4*mm),
+        ]
+
+        for j in range(0, len(photos), 2):
+            group = photos[j:j + 2]
+            photo_cells = []
             for ph in group:
-                im=img_flow(ROOT/'public'/ph['src'].lstrip('/'),68*mm,125*mm)
+                im = img_flow(ROOT / 'public' / ph['src'].lstrip('/'), 62*mm, 72*mm)
                 if im:
-                    cell=[im]
-                    if ph.get('caption'):cell.append(Paragraph(esc(ph['caption']),styles['CaptionBook']))
-                    cells.append(cell)
-            if cells:
-                table=Table([[cells[0]]],colWidths=[136*mm],hAlign='CENTER')
-                table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('ALIGN',(0,0),(-1,-1),'CENTER'),('LEFTPADDING',(0,0),(-1,-1),3*mm),('RIGHTPADDING',(0,0),(-1,-1),3*mm),('TOPPADDING',(0,0),(-1,-1),2*mm),('BOTTOMPADDING',(0,0),(-1,-1),2*mm)]));story.append(table)
-            story.append(PageBreak())
-    story += [Spacer(1,50*mm),Paragraph('GOLDEN JUBILEE · 1976–2026',styles['Section']),Paragraph('Years pass.<br/><i>Friendship remains.</i>',ParagraphStyle('closing',fontName='BookSerif',fontSize=34,leading=36,textColor=DEEP,alignment=TA_CENTER,spaceAfter=12*mm)),HRFlowable(width='30%',thickness=1,color=GOLD,hAlign='CENTER',spaceAfter=10*mm),Paragraph('To the classmates, families and memories that made this journey extraordinary.',ParagraphStyle('closetext',fontName='BookSerif-Italic',fontSize=14,leading=20,textColor=MUTED,alignment=TA_CENTER))]
+                    cell = [im]
+                    if ph.get('caption'):
+                        cell.append(Paragraph(esc(ph['caption']), styles['CaptionBook']))
+                    photo_cells.append(cell)
+
+            # Ignore missing/unreadable image files without inventing replacements.
+            if not photo_cells:
+                continue
+
+            row = photo_cells + ([Spacer(1, 1)] if len(photo_cells) == 1 else [])
+            table = Table([row], colWidths=[68*mm] * len(row), hAlign='CENTER')
+            table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 2*mm),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 2*mm),
+                ('TOPPADDING', (0, 0), (-1, -1), 2*mm),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 2*mm),
+            ]))
+
+            block = ([*photo_heading, table] if j == 0 else [table])
+            story.append(KeepTogether(block))
+            # No forced page break: the next pair follows if it fits, otherwise it moves on
+            # naturally (each pair and its captions are kept together).
+    story += [PageBreak(),Spacer(1,50*mm),Paragraph('GOLDEN JUBILEE · 1976–2026',styles['Section']),Paragraph('Years pass.<br/><i>Friendship remains.</i>',ParagraphStyle('closing',fontName='BookSerif',fontSize=34,leading=36,textColor=DEEP,alignment=TA_CENTER,spaceAfter=12*mm)),HRFlowable(width='30%',thickness=1,color=GOLD,hAlign='CENTER',spaceAfter=10*mm),Paragraph('To the classmates, families and memories that made this journey extraordinary.',ParagraphStyle('closetext',fontName='BookSerif-Italic',fontSize=14,leading=20,textColor=MUTED,alignment=TA_CENTER))]
     doc.build(story,onFirstPage=bg_cover,onLaterPages=footer)
 
 high=OUT/'golden-jubilee-high-resolution.pdf'; low=OUT/'golden-jubilee-low-resolution.pdf'
 build_pdf(high)
 # Recompress the high-resolution PDF with Ghostscript for a web-sharing version.
 cmd=['gs','-sDEVICE=pdfwrite','-dCompatibilityLevel=1.5','-dPDFSETTINGS=/ebook','-dNOPAUSE','-dBATCH','-dQUIET',f'-sOutputFile={low}',str(high)]
-subprocess.run(cmd,check=True)
+if shutil.which('gs'): subprocess.run(cmd,check=True)
+else:
+    # Fallback when Ghostscript is unavailable: rebuild the sharing edition with downsampled photos.
+    LOW_MODE=True; build_pdf(low); print('Ghostscript not found; low-resolution PDF built with downsampled images')
 print('high',high.stat().st_size,'bytes','low',low.stat().st_size,'bytes')

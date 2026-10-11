@@ -77,3 +77,7 @@ npm run pdf:generate
 ```
 
 The PDF generator skips blank or placeholder-only memory sections (`--`, `---`, `n/a`, `none`) just as the online book does. After generation, inspect a long career page, a multi-paragraph family page, and a blank-memory profile before deploying.
+
+## V7 compact flow
+Each alumnus starts on a new page; the story and extra photos then flow continuously without forced page
+breaks. See `CHANGELOG_V7_COMPACT_FLOW.md`.
