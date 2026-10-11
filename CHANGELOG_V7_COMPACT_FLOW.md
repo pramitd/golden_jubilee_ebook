@@ -43,3 +43,8 @@ Colours, fonts, ornaments, footer, identity-page design and the cover/index/clos
 - All 39 captions in `public_data.json` were verified verbatim against the Word file.
 - Remaining non-source text is fixed layout furniture only (section labels, cover, closing page, footer,
   and the note that Bijan K. Dutta has no profile in the source).
+
+## Reader zoom
+- Added zoom out / zoom in buttons with a live percentage (click the percentage to return to fit-to-screen).
+- Keyboard: `+` zoom in, `-` zoom out, `0` fit. Ctrl/Cmd + scroll wheel over the page also zooms.
+- Zoomed pages scroll inside the reading frame; range 50%–300% of fit. PDF export is unaffected.
