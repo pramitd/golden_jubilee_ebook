@@ -87,7 +87,7 @@ function FlowItem({p,item,sizes}){
 }
 // One A4 page of an alumnus. The first page is the identity page; later pages carry the running header.
 function ProfilePage({p,first,items,n,sizes}){return <Page n={n} className={`flow-page ${first?'identity-page':'story-page continuation-page'}`}>{first?<IdentityHead p={p}/>:<div className="story-running"><span>{p.name}</span><span>{p.branch}</span></div>}<div className="flow-body">{items.map((it,i)=><FlowItem key={i} p={p} item={it} sizes={sizes}/>)}</div></Page>}
-function buildPages(data, plan){const pages=[{key:'cover',render:n=><Cover book={data.book} n={n}/>},{key:'index',render:n=><IndexPage data={data} n={n}/>}];
+function buildPages(data, plan){const pages=[{key:'cover',render:n=><Cover book={data.book} n={n}/>}];
   for(const p of data.participants){
     (plan.profiles[p.participant_id]||[]).forEach((pg,i)=>pages.push({key:i===0?p.participant_id+'-identity':`${p.participant_id}-flow-${i}`,person:p.name,render:n=><ProfilePage p={p} first={pg.first} items={pg.items} n={n} sizes={plan.sizes}/>}));
   }
