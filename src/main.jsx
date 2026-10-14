@@ -19,6 +19,10 @@ const STORY_FIELDS=[['career','Professional Journey'],['family','Family'],['memo
 const FOOTER_GAP=10;            // px kept clear between the last line and the footer rule
 const MIN_TOKENS_ON_PAGE=30;    // never strand a heading with only a line or two at the page bottom
 const PHOTO_HEIGHTS=[105,92,80,70,60,52,44]; // mm - largest that fits the space left is used
+const FRESH_HEIGHTS=[250,230,210,190,170,150,135,120,108,96,86,76,68,60]; // mm - tried largest first on a fresh page
+const PAIR_W=72, SINGLE_W=158; // mm - max photo width for a two-up row / a full-width row
+const MAX_PER_PAGE=8;          // most extra photographs considered for one fresh page
+const MIN_PHOTO_AREA_MM2=4000; // a fresh page takes more photographs only while each stays at least this big
 const MIN_PHOTO_SCALE=.85;     // photos are never shrunk below 85% of ideal just to squeeze onto a page
 function loadImageSizes(data){
   const srcs=new Set();data.participants.forEach(p=>(p.photos||[]).forEach(ph=>srcs.add(ph.src)));
@@ -57,22 +61,56 @@ function planProfile(p,sizes,host,root){
     }
     if(joined[key]!==text)throw new Error(`Pagination changed source text for ${p.name} - ${title}`);
   }
-  // Additional photographs: source order, up to two per row, each with its caption; a row moves to
-  // the next page only if it cannot fit (even at the smallest size) in the space that remains.
-  const extra=(p.photos||[]).slice(1);const rows=[];
-  for(let i=0;i<extra.length;i+=2)rows.push(extra.slice(i,i+2));
-  let headed=false;
-  for(const row of rows){
-    const maxW=row.length===1?120:75;
-    // A row may shrink to squeeze into the space left on the current page only while every photo keeps at
-    // least MIN_PHOTO_SCALE of its ideal (full-size) width; otherwise it moves to the next page at full size.
-    const ideal=row.map(ph=>photoBox(sizes[ph.src]||{w:800,h:600},maxW,PHOTO_HEIGHTS[0]));
-    const place=(pg,allowShrink)=>{for(const H of PHOTO_HEIGHTS){
-      const big=row.every((ph,i)=>photoBox(sizes[ph.src]||{w:800,h:600},maxW,H).w>=ideal[i].w*MIN_PHOTO_SCALE);
-      if(!big&&allowShrink)break;
-      const item={type:'photos',photos:row,maxW,maxH:H,heading:!headed};if(fits(pg.first,[...pg.items,item])){pg.items.push(item);return true;}}return false;};
-    if(!place(cur(),true)){newPage();if(!place(cur(),false))throw new Error(`A4 pagination could not fit photographs for ${p.name}.`);}
-    headed=true;
+  // Additional photographs, always in source order.
+  // 1) Leftover space on the current page is used first (a pair may shrink only to MIN_PHOTO_SCALE).
+  // 2) Otherwise a fresh page is started and the remaining photographs are laid out as LARGE as that page
+  //    allows: as many photographs as fit with a decent minimum size, either one per row (full width) or
+  //    two per row, whichever gives the bigger photographs. Photographs are never cropped.
+  const extra=(p.photos||[]).slice(1);
+  let headed=false,idx=0;
+  const sz=ph=>sizes[ph.src]||{w:800,h:600};
+  const mkItem=(row,maxW,H,heading)=>({type:'photos',photos:row,maxW,maxH:H,heading});
+  const areaMm2=(ph,maxW,H)=>{const b=photoBox(sz(ph),maxW,H);return b.w*b.h/(MM*MM);};
+  while(idx<extra.length){
+    const pair=extra.slice(idx,idx+2);
+    const maxW=pair.length===1?120:PAIR_W;
+    const ideal=pair.map(ph=>photoBox(sz(ph),maxW,PHOTO_HEIGHTS[0]));
+    let placed=false;
+    const canSqueeze=cur().items.length>0||cur().first;
+    if(canSqueeze)for(const H of PHOTO_HEIGHTS){
+      const big=pair.every((ph,i)=>photoBox(sz(ph),maxW,H).w>=ideal[i].w*MIN_PHOTO_SCALE);
+      if(!big)break;
+      const pg=cur();const item=mkItem(pair,maxW,H,!headed);
+      if(fits(pg.first,[...pg.items,item])){pg.items.push(item);headed=true;idx+=pair.length;placed=true;break;}
+    }
+    if(placed)continue;
+    // Fresh page (or the current page if it is still empty of items and not the identity page).
+    if(cur().items.length>0||cur().first)newPage();
+    const pg=cur();const left=extra.length-idx;
+    let chosen=null;
+    for(let k=Math.min(left,MAX_PER_PAGE);k>=1&&!chosen;k--){
+      const batch=extra.slice(idx,idx+k);
+      let bestForK=null;
+      for(const mode of ['single','pair']){
+        const rows=[];
+        if(mode==='single')batch.forEach(ph=>rows.push([ph]));
+        else for(let i=0;i<batch.length;i+=2)rows.push(batch.slice(i,i+2));
+        if(mode==='pair'&&k===1)continue;
+        for(const H of FRESH_HEIGHTS){
+          const items=rows.map((r,ri)=>mkItem(r,r.length===1?SINGLE_W:PAIR_W,H,!headed&&ri===0));
+          if(fits(pg.first,[...pg.items,...items])){
+            const minArea=Math.min(...items.flatMap(it=>it.photos.map(ph=>areaMm2(ph,it.maxW,it.maxH))));
+            const total=items.reduce((a,it)=>a+it.photos.reduce((b,ph)=>b+areaMm2(ph,it.maxW,it.maxH),0),0);
+            if(!bestForK||total>bestForK.total)bestForK={items,total,minArea,k};
+            break;
+          }
+        }
+      }
+      if(bestForK&&(k===1||bestForK.minArea>=MIN_PHOTO_AREA_MM2))chosen=bestForK;
+    }
+    if(!chosen)throw new Error(`A4 pagination could not fit photographs for ${p.name}.`);
+    chosen.items.forEach(it=>pg.items.push(it));headed=true;idx+=chosen.k;
+    if(idx<extra.length)newPage();
   }
   return pages;
 }

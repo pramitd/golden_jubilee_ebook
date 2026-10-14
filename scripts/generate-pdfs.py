@@ -110,6 +110,85 @@ def img_flow(path,maxw,maxh):
         return Image(str(path),width=w*scale,height=h*scale)
     except Exception:return None
 
+# ---------------------------------------------------------------------------------------------
+# Photographs: always in source order and never cropped. Leftover space on the current page is used
+# first (a pair may shrink only to 85% of its ideal size); otherwise the photographs move to a fresh
+# page and are laid out as LARGE as that page allows (one per row at full width, or two per row,
+# whichever gives bigger photographs), taking as many photographs as fit at a decent minimum size.
+# ---------------------------------------------------------------------------------------------
+from reportlab.platypus import Flowable
+PG_PAIR_W=80*mm; PG_SINGLE_W=158*mm
+PG_SQUEEZE=[105,92,80,70,60,52,44]                       # mm, current-page leftover space
+PG_FRESH=[250,230,210,190,170,150,135,120,108,96,86,76,68,60]  # mm, fresh page
+PG_MIN_AREA=4000*mm*mm; PG_MIN_SCALE=.85; PG_MAX_PER_PAGE=8
+def _pg_size(ph):
+    try:
+        w,h=PILImage.open(ROOT/'public'/ph['src'].lstrip('/')).size
+        return w,h
+    except Exception:return 800,600
+def _pg_box(ph,maxw,maxh):
+    w,h=_pg_size(ph);sc=min(maxw/w,maxh/h);return w*sc,h*sc
+def _pg_row(row,maxw,maxh,availW):
+    cells=[];widths=[]
+    for ph in row:
+        im=img_flow(ROOT/'public'/ph['src'].lstrip('/'),maxw,maxh)
+        if im is None:continue
+        cell=[im]
+        if ph.get('caption'):cell.append(Paragraph(esc(ph['caption']),styles['CaptionBook']))
+        cells.append(cell);widths.append(im.drawWidth+4*mm)
+    if not cells:return None,0
+    t=Table([cells],colWidths=widths,hAlign='CENTER')
+    t.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('ALIGN',(0,0),(-1,-1),'CENTER'),('LEFTPADDING',(0,0),(-1,-1),2*mm),('RIGHTPADDING',(0,0),(-1,-1),2*mm),('TOPPADDING',(0,0),(-1,-1),1.5*mm),('BOTTOMPADDING',(0,0),(-1,-1),2*mm)]))
+    return t,t.wrap(availW,10**6)[1]
+class PhotoGroup(Flowable):
+    def __init__(self,photos,heading=None):
+        Flowable.__init__(self);self.photos=photos;self.heading=heading
+    def wrap(self,aW,aH):
+        self._aW=aW;return aW,aH+1          # always ask to be split into what fits
+    def draw(self):pass
+    def _heights(self,aW):
+        return sum(f.wrap(aW,10**6)[1] for f in (self.heading or []))
+    def _try(self,rows,maxws,H,aW,aH,with_heading):
+        flows=[];total=self._heights(aW) if with_heading else 0
+        for r,mw in zip(rows,maxws):
+            t,h=_pg_row(r,mw,H*mm,aW)
+            if t is None:continue
+            flows.append(t);total+=h+3*mm
+        return (flows,total) if total<=aH-2 else (None,total)
+    def split(self,aW,aH):
+        photos=self.photos;head=self.heading;with_heading=head is not None
+        fresh=aH>=240*mm
+        if not fresh:
+            pair=photos[:2];mw=PG_SINGLE_W*.75 if len(pair)==1 else PG_PAIR_W
+            ideal=[_pg_box(p,mw,PG_SQUEEZE[0]*mm)[0] for p in pair]
+            for H in PG_SQUEEZE:
+                if not all(_pg_box(p,mw,H*mm)[0]>=ideal[i]*PG_MIN_SCALE for i,p in enumerate(pair)):break
+                flows,_=self._try([pair],[mw],H,aW,aH,with_heading)
+                if flows:
+                    out=(list(head) if with_heading else [])+flows
+                    rest=photos[2:]
+                    return out+([PhotoGroup(rest)] if rest else [])
+            return []                                   # not enough room: continue on the next page
+        left=len(photos);chosen=None
+        for k in range(min(left,PG_MAX_PER_PAGE),0,-1):
+            batch=photos[:k];best=None
+            for mode in ('single','pair'):
+                if mode=='pair' and k==1:continue
+                rows=[[p] for p in batch] if mode=='single' else [batch[i:i+2] for i in range(0,k,2)]
+                maxws=[PG_SINGLE_W if len(r)==1 else PG_PAIR_W for r in rows]
+                for H in PG_FRESH:
+                    flows,_=self._try(rows,maxws,H,aW,aH,with_heading)
+                    if flows:
+                        areas=[_pg_box(p,mw,H*mm) for r,mw in zip(rows,maxws) for p in r]
+                        tot=sum(a*b for a,b in areas);mn=min(a*b for a,b in areas)
+                        if best is None or tot>best[0]:best=(tot,mn,flows)
+                        break
+            if best and (k==1 or best[1]>=PG_MIN_AREA):chosen=(k,best[2]);break
+        if not chosen:return []
+        k,flows=chosen;out=(list(head) if with_heading else [])+flows
+        rest=photos[k:]
+        return out+([PhotoGroup(rest)] if rest else [])
+
 def build_pdf(path, low=False):
     global CLOSING
     CLOSING=False   # reset per build: only the page after the SetClosing marker is the dark closing page
@@ -178,36 +257,9 @@ def build_pdf(path, low=False):
             HRFlowable(width='28%', thickness=1, color=GOLD, hAlign='LEFT', spaceAfter=4*mm),
         ]
 
-        for j in range(0, len(photos), 2):
-            group = photos[j:j + 2]
-            photo_cells = []
-            for ph in group:
-                im = img_flow(ROOT / 'public' / ph['src'].lstrip('/'), 62*mm, 72*mm)
-                if im:
-                    cell = [im]
-                    if ph.get('caption'):
-                        cell.append(Paragraph(esc(ph['caption']), styles['CaptionBook']))
-                    photo_cells.append(cell)
-
-            # Ignore missing/unreadable image files without inventing replacements.
-            if not photo_cells:
-                continue
-
-            row = photo_cells + ([Spacer(1, 1)] if len(photo_cells) == 1 else [])
-            table = Table([row], colWidths=[68*mm] * len(row), hAlign='CENTER')
-            table.setStyle(TableStyle([
-                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-                ('LEFTPADDING', (0, 0), (-1, -1), 2*mm),
-                ('RIGHTPADDING', (0, 0), (-1, -1), 2*mm),
-                ('TOPPADDING', (0, 0), (-1, -1), 2*mm),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 2*mm),
-            ]))
-
-            block = ([*photo_heading, table] if j == 0 else [table])
-            story.append(KeepTogether(block))
-            # No forced page break: the next pair follows if it fits, otherwise it moves on
-            # naturally (each pair and its captions are kept together).
+        valid=[ph for ph in photos if (ROOT/'public'/ph['src'].lstrip('/')).exists()]
+        if valid:
+            story.append(PhotoGroup(valid, photo_heading))
     cream=colors.HexColor('#FFF4DD')
     story += [SetClosing(),PageBreak(),Spacer(1,107*mm),
         Paragraph('GOLDEN JUBILEE  ·  1976–2026',ParagraphStyle('ck',fontName='BookSans-Bold',fontSize=7.5,leading=11,textColor=LIGHTGOLD,alignment=TA_CENTER,spaceAfter=7)),
