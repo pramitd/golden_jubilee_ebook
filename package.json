@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "sync:data": "node sync-data.mjs",
-    "pdf:generate": "python3 scripts/generate-pdfs.py"
+    "pdf:generate": "node scripts/generate-pdf.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
