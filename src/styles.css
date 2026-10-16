@@ -303,3 +303,24 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 .closing-page .closing-content strong{display:block;font:700 8px 'Inter',sans-serif;letter-spacing:.28em;color:var(--gold-light)}
 .closing-page .cover-editor{margin-top:34px}
 .closing-page .folio{z-index:5;left:19mm!important;right:19mm!important}
+
+/* Web e-book: improve text contrast without changing layout or PDFs */
+.paper { --ink: #17231b; }
+.story-body,
+.combined-story-body,
+.flow-section p { color: #202c23; }
+.photo-card figcaption,
+.flow-photo-row .photo-card figcaption { color: #26372b; }
+.identity-meta { color: #344638; }
+
+/* Stronger text contrast for the web e-book */
+.paper { color: #111a13; }
+.story-body,
+.combined-story-body,
+.flow-section p { color: #151f17; }
+.photo-card figcaption,
+.flow-photo-row .photo-card figcaption { color: #17251a; }
+.identity-meta { color: #202f23; }
+.detail-item p { color: #172019; }
+.index-entry small,
+.intro-copy { color: #42483e; }
