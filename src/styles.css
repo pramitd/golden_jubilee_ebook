@@ -327,3 +327,5 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 .editor-note { color: #1a241c; }
 .contents button { color: #1c2820; }
 .site-footer { color: #243028; }
+.folio-contact{display:flex;align-items:center;gap:10px;}
+.folio-contact a{letter-spacing:.03em;}
