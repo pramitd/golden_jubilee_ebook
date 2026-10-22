@@ -330,3 +330,9 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 .folio-contact{display:flex;align-items:center;gap:6px;}
 .folio-contact a{letter-spacing:.03em;}
 .folio-sep{letter-spacing:0;font-weight:400;}
+/* Print/PDF: drop soft shadows. Ghostscript otherwise paints them as offset gray boxes. */
+.pdf-sheet .photo-card,
+.pdf-sheet .seal,
+.pdf-sheet .cover-page h1,
+.pdf-sheet .cover-editor-name,
+.pdf-sheet .closing-page h2{box-shadow:none!important;text-shadow:none!important;}

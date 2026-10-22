@@ -21,8 +21,6 @@ const MIN_TOKENS_ON_PAGE=30;    // never strand a heading with only a line or tw
 const PHOTO_HEIGHTS=[105,92,80,70,60,52,44]; // mm - largest that fits the space left is used
 const FRESH_HEIGHTS=[250,230,210,190,170,150,135,120,108,96,86,76,68,60]; // mm - tried largest first on a fresh page
 const PAIR_W=72, SINGLE_W=158; // mm - max photo width for a two-up row / a full-width row
-const MAX_PER_PAGE=8;          // most extra photographs considered for one fresh page
-const MIN_PHOTO_AREA_MM2=4000; // a fresh page takes more photographs only while each stays at least this big
 const MIN_PHOTO_SCALE=.85;     // photos are never shrunk below 85% of ideal just to squeeze onto a page
 function loadImageSizes(data){
   const srcs=new Set();data.participants.forEach(p=>(p.photos||[]).forEach(ph=>srcs.add(ph.src)));
@@ -95,29 +93,14 @@ function planProfile(p,sizes,host,root){
       if(pick){cur().items.push(pick.item);headed=true;idx+=pick.n;placed=true;}
     }
     if(placed)continue;
-    // Fresh page (or the current page if it is still empty of items and not the identity page).
+    // A fresh page holds one photograph at the largest size that fits, so a pair is not
+    // left side by side with empty page beneath it.
     if(cur().items.length>0||cur().first)newPage();
-    const pg=cur();const left=extra.length-idx;
+    const pg=cur();
     let chosen=null;
-    for(let k=Math.min(left,MAX_PER_PAGE);k>=1&&!chosen;k--){
-      const batch=extra.slice(idx,idx+k);
-      let bestForK=null;
-      for(const mode of ['single','pair']){
-        const rows=[];
-        if(mode==='single')batch.forEach(ph=>rows.push([ph]));
-        else for(let i=0;i<batch.length;i+=2)rows.push(batch.slice(i,i+2));
-        if(mode==='pair'&&k===1)continue;
-        for(const H of FRESH_HEIGHTS){
-          const items=rows.map((r,ri)=>mkItem(r,r.length===1?SINGLE_W:PAIR_W,H,!headed&&ri===0));
-          if(fits(pg.first,[...pg.items,...items])){
-            const minArea=Math.min(...items.flatMap(it=>it.photos.map(ph=>areaMm2(ph,it.maxW,it.maxH))));
-            const total=items.reduce((a,it)=>a+it.photos.reduce((b,ph)=>b+areaMm2(ph,it.maxW,it.maxH),0),0);
-            if(!bestForK||total>bestForK.total)bestForK={items,total,minArea,k};
-            break;
-          }
-        }
-      }
-      if(bestForK&&(k===1||bestForK.minArea>=MIN_PHOTO_AREA_MM2))chosen=bestForK;
+    for(const H of FRESH_HEIGHTS){
+      const item=mkItem([extra[idx]],SINGLE_W,H,!headed);
+      if(fits(pg.first,[...pg.items,item])){chosen={items:[item],k:1};break;}
     }
     if(!chosen)throw new Error(`A4 pagination could not fit photographs for ${p.name}.`);
     chosen.items.forEach(it=>pg.items.push(it));headed=true;idx+=chosen.k;

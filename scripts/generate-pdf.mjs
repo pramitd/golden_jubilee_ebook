@@ -35,7 +35,18 @@ const gsBin = ['gs', 'gswin64c', 'gswin32c'].find(name => spawnSync(name, ['--ve
 if (!gsBin) {
   console.log('Ghostscript not found - low-res PDF NOT updated. Install Ghostscript and retry.');
 } else {
-  const gs = spawnSync(gsBin, ['-sDEVICE=pdfwrite', '-dCompatibilityLevel=1.5', '-dPDFSETTINGS=/ebook', '-dNOPAUSE', '-dBATCH', '-dQUIET', `-sOutputFile=${LOW}`, HIGH], { stdio: 'inherit' });
+  // Soft shadows are removed in the print stylesheet. /ebook can then downsample
+  // photographs without painting those shadows as offset gray boxes.
+  const gs = spawnSync(gsBin, [
+    '-sDEVICE=pdfwrite',
+    '-dCompatibilityLevel=1.5',
+    '-dPDFSETTINGS=/ebook',
+    '-dNOPAUSE',
+    '-dBATCH',
+    '-dQUIET',
+    `-sOutputFile=${LOW}`,
+    HIGH
+  ], { stdio: 'inherit' });
   if (gs.status !== 0) console.log('Ghostscript failed - low-res PDF NOT updated.');
   else console.log('Low-res PDF:', (statSync(LOW).size / 1e6).toFixed(1), 'MB');
 }

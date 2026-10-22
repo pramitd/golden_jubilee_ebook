@@ -10,7 +10,9 @@ Published from `Final Compilation of GForm Inputs from Contributors - Master.doc
 
 ## Reader
 - Cream-page body type, captions, the index, and the contents list are near-black. Cover and closing pages stay light text on emerald.
-- When a page has spare room under a short story, the next photograph is shown full width instead of leaving a small two-up row. Santosh Golechha’s “Then” portrait and the following photographs use this larger layout.
+- When a page has spare room under a short story, the next photograph is shown full width instead of leaving a small two-up row.
+- A fresh photograph page holds one picture at full page size. B L Agrawal’s two portraits each have their own page.
+- The low-resolution PDF no longer draws a gray silhouette around photographs or the cover. Soft shadows are omitted from the print file, and Ghostscript flattens transparency without offset boxes.
 - The page footer and the site footer show `pramit.b.dutta@gmail.com | boroai.in`.
 
 ## Photographs
