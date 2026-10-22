@@ -73,15 +73,26 @@ function planProfile(p,sizes,host,root){
   const areaMm2=(ph,maxW,H)=>{const b=photoBox(sz(ph),maxW,H);return b.w*b.h/(MM*MM);};
   while(idx<extra.length){
     const pair=extra.slice(idx,idx+2);
-    const maxW=pair.length===1?120:PAIR_W;
-    const ideal=pair.map(ph=>photoBox(sz(ph),maxW,PHOTO_HEIGHTS[0]));
     let placed=false;
     const canSqueeze=cur().items.length>0||cur().first;
-    if(canSqueeze)for(const H of PHOTO_HEIGHTS){
-      const big=pair.every((ph,i)=>photoBox(sz(ph),maxW,H).w>=ideal[i].w*MIN_PHOTO_SCALE);
-      if(!big)break;
-      const pg=cur();const item=mkItem(pair,maxW,H,!headed);
-      if(fits(pg.first,[...pg.items,item])){pg.items.push(item);headed=true;idx+=pair.length;placed=true;break;}
+    if(canSqueeze){
+      const tryPlace=(row,rowMaxW,heights)=>{
+        const rowIdeal=row.map(ph=>photoBox(sz(ph),rowMaxW,heights[0]));
+        for(const H of heights){
+          const big=row.every((ph,i)=>photoBox(sz(ph),rowMaxW,H).w>=rowIdeal[i].w*MIN_PHOTO_SCALE);
+          if(!big)break;
+          const item=mkItem(row,rowMaxW,H,!headed);
+          if(fits(cur().first,[...cur().items,item]))return {item,n:row.length,area:row.reduce((a,ph)=>a+areaMm2(ph,rowMaxW,H),0)};
+        }
+        return null;
+      };
+      // A full-width photograph is used when leftover page space would otherwise
+      // leave the two-up row small. The next photograph continues on the following page.
+      const tall=[200,180,160,140,130,120,110,...PHOTO_HEIGHTS];
+      const one=tryPlace([extra[idx]],SINGLE_W,tall);
+      const two=pair.length===2?tryPlace(pair,PAIR_W,PHOTO_HEIGHTS):null;
+      const pick=one&&two?(one.area>two.area/2*1.35?one:two):(one||two);
+      if(pick){cur().items.push(pick.item);headed=true;idx+=pick.n;placed=true;}
     }
     if(placed)continue;
     // Fresh page (or the current page if it is still empty of items and not the identity page).
