@@ -11,7 +11,7 @@ Published from `Final Compilation of GForm Inputs from Contributors - Master.doc
 ## Reader
 - Cream-page body type, captions, the index, and the contents list are near-black. Cover and closing pages stay light text on emerald.
 - When a page has spare room under a short story, the next photograph is shown full width instead of leaving a small two-up row. Santosh Golechha’s “Then” portrait and the following photographs use this larger layout.
-- The page footer and the site footer show `pramit.b.dutta@gmail.com` immediately before `boroai.in`.
+- The page footer and the site footer show `pramit.b.dutta@gmail.com | boroai.in`.
 
 ## Photographs
 - Ranjana Deshpande Muley’s portrait is turned upright.
