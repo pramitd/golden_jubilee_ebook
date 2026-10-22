@@ -31,6 +31,11 @@ try {
   await browser.close();
   await new Promise(r => server.httpServer.close(r));
 }
-const gs = spawnSync('gs', ['-sDEVICE=pdfwrite', '-dCompatibilityLevel=1.5', '-dPDFSETTINGS=/ebook', '-dNOPAUSE', '-dBATCH', '-dQUIET', `-sOutputFile=${LOW}`, HIGH], { stdio: 'inherit' });
-if (gs.error || gs.status !== 0) console.log('Ghostscript not found/failed - low-res PDF NOT updated. Install it with: brew install ghostscript');
-else console.log('Low-res PDF:', (statSync(LOW).size / 1e6).toFixed(1), 'MB');
+const gsBin = ['gs', 'gswin64c', 'gswin32c'].find(name => spawnSync(name, ['--version'], { stdio: 'ignore' }).status === 0);
+if (!gsBin) {
+  console.log('Ghostscript not found - low-res PDF NOT updated. Install Ghostscript and retry.');
+} else {
+  const gs = spawnSync(gsBin, ['-sDEVICE=pdfwrite', '-dCompatibilityLevel=1.5', '-dPDFSETTINGS=/ebook', '-dNOPAUSE', '-dBATCH', '-dQUIET', `-sOutputFile=${LOW}`, HIGH], { stdio: 'inherit' });
+  if (gs.status !== 0) console.log('Ghostscript failed - low-res PDF NOT updated.');
+  else console.log('Low-res PDF:', (statSync(LOW).size / 1e6).toFixed(1), 'MB');
+}

@@ -304,23 +304,26 @@ html.pdf-mode,body.pdf-mode,#root{height:auto!important;min-height:0!important;o
 .closing-page .cover-editor{margin-top:34px}
 .closing-page .folio{z-index:5;left:19mm!important;right:19mm!important}
 
-/* Web e-book: improve text contrast without changing layout or PDFs */
-.paper { --ink: #17231b; }
+/* Web e-book: near-black body type on the cream pages. Cover and closing stay light-on-emerald. */
+.paper { --ink: #0c110e; color: #0c110e; }
 .story-body,
 .combined-story-body,
-.flow-section p { color: #202c23; }
+.flow-section p,
+.detail-item p {
+  color: #0c110e;
+  font-weight: 500;
+}
 .photo-card figcaption,
-.flow-photo-row .photo-card figcaption { color: #26372b; }
-.identity-meta { color: #344638; }
-
-/* Stronger text contrast for the web e-book */
-.paper { color: #111a13; }
-.story-body,
-.combined-story-body,
-.flow-section p { color: #151f17; }
-.photo-card figcaption,
-.flow-photo-row .photo-card figcaption { color: #17251a; }
-.identity-meta { color: #202f23; }
-.detail-item p { color: #172019; }
+.flow-photo-row .photo-card figcaption,
+.hero-photo figcaption {
+  color: #121a14;
+  font-weight: 500;
+}
+.identity-meta,
+.story-running,
+.index-entry,
 .index-entry small,
-.intro-copy { color: #42483e; }
+.intro-copy,
+.editor-note { color: #1a241c; }
+.contents button { color: #1c2820; }
+.site-footer { color: #243028; }
