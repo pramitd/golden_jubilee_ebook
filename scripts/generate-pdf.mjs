@@ -1,14 +1,10 @@
-// Generates both PDF editions FROM THE ONLINE READER, so the PDF is page-for-page identical to the web book.
-// It builds the site, serves it locally, opens the reader's built-in print mode (?pdf=1, A4 pages) in headless
-// Chromium and prints it. Run:  npm run pdf:generate   (needs Ghostscript for the low-res edition: brew install ghostscript)
+// Generates the publication PDF from the online reader (?pdf=1). Run: npm run pdf:generate
 import { build, preview } from 'vite';
 import { chromium } from 'playwright';
-import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { statSync } from 'node:fs';
 
-const HIGH = resolve('public/golden-jubilee-high-resolution.pdf');
-const LOW = resolve('public/golden-jubilee-low-resolution.pdf');
+const OUT = resolve('public/golden-jubilee-high-resolution.pdf');
 
 console.log('Building the site...');
 await build({ logLevel: 'warn' });
@@ -25,28 +21,60 @@ try {
   await page.waitForTimeout(1500);
   const sheets = await page.locator('.pdf-sheet').count();
   console.log(`Reader pages: ${sheets}`);
-  await page.pdf({ path: HIGH, format: 'A4', printBackground: true, preferCSSPageSize: true, margin: { top: '0', right: '0', bottom: '0', left: '0' } });
-  console.log('High-res PDF:', (statSync(HIGH).size / 1e6).toFixed(1), 'MB');
+  const pdfMeta = await page.evaluate(() => {
+    const sheets = [...document.querySelectorAll('.pdf-sheet')];
+    const outline = [];
+    sheets.forEach((el, i) => {
+      const title = el.getAttribute('data-outline');
+      if (title) outline.push({ title, page: i });
+    });
+    const indexSheet = document.querySelector('.pdf-sheet .index-page');
+    if (indexSheet) {
+      const idx = sheets.findIndex(s => s.contains(indexSheet));
+      if (idx >= 0) outline.unshift({ title: 'Contributors index', page: idx });
+    }
+    const cover = document.querySelector('.pdf-sheet .cover-page');
+    if (cover) {
+      const idx = sheets.findIndex(s => s.contains(cover));
+      if (idx >= 0) outline.unshift({ title: 'Cover', page: idx });
+    }
+    const links = [];
+    sheets.forEach((sheet, pageIndex) => {
+      const sheetRect = sheet.getBoundingClientRect();
+      if (!sheetRect.width || !sheetRect.height) return;
+      sheet.querySelectorAll('a.index-entry-link').forEach(a => {
+        const id = (a.getAttribute('href') || '').replace(/^#/, '');
+        const dest = id && document.getElementById(id);
+        const destSheet = dest && dest.closest('.pdf-sheet');
+        const destPage = destSheet ? sheets.indexOf(destSheet) : -1;
+        if (destPage < 0) return;
+        const r = a.getBoundingClientRect();
+        links.push({
+          page: pageIndex,
+          dest: destPage,
+          x: (r.left - sheetRect.left) / sheetRect.width,
+          y: (r.top - sheetRect.top) / sheetRect.height,
+          w: r.width / sheetRect.width,
+          h: r.height / sheetRect.height,
+        });
+      });
+    });
+    return { outline, links };
+  });
+  console.log(`Contributor links: ${pdfMeta.links.length}`);
+  await page.pdf({ path: OUT, format: 'A4', printBackground: true, preferCSSPageSize: true, margin: { top: '0', right: '0', bottom: '0', left: '0' } });
+  console.log('PDF:', (statSync(OUT).size / 1e6).toFixed(1), 'MB');
+  const { writeFileSync } = await import('node:fs');
+  const { spawnSync } = await import('node:child_process');
+  const metaPath = resolve('scripts/.pdf-meta.json');
+  writeFileSync(metaPath, JSON.stringify(pdfMeta));
+  const py = spawnSync('python', ['scripts/add-pdf-outline.py', OUT, metaPath], {
+    cwd: resolve('.'),
+    encoding: 'utf8',
+  });
+  if (py.stdout) console.log(py.stdout.trim());
+  if (py.stderr) console.log(py.stderr.trim());
 } finally {
   await browser.close();
   await new Promise(r => server.httpServer.close(r));
-}
-const gsBin = ['gs', 'gswin64c', 'gswin32c'].find(name => spawnSync(name, ['--version'], { stdio: 'ignore' }).status === 0);
-if (!gsBin) {
-  console.log('Ghostscript not found - low-res PDF NOT updated. Install Ghostscript and retry.');
-} else {
-  // Soft shadows are removed in the print stylesheet. /ebook can then downsample
-  // photographs without painting those shadows as offset gray boxes.
-  const gs = spawnSync(gsBin, [
-    '-sDEVICE=pdfwrite',
-    '-dCompatibilityLevel=1.5',
-    '-dPDFSETTINGS=/ebook',
-    '-dNOPAUSE',
-    '-dBATCH',
-    '-dQUIET',
-    `-sOutputFile=${LOW}`,
-    HIGH
-  ], { stdio: 'inherit' });
-  if (gs.status !== 0) console.log('Ghostscript failed - low-res PDF NOT updated.');
-  else console.log('Low-res PDF:', (statSync(LOW).size / 1e6).toFixed(1), 'MB');
 }

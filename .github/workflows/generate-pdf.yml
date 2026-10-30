@@ -18,25 +18,19 @@ jobs:
           cache: npm
       - name: Install Node dependencies
         run: npm ci
-      - name: Install PDF dependencies
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Generate PDF from the web reader
+        run: npm run pdf:generate
+      - name: Verify generated PDF
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          sudo apt-get update
-          sudo apt-get install -y ghostscript fonts-dejavu-core
-      - name: Build website
-        run: npm run build
-      - name: Generate both PDFs
-        run: python scripts/generate-pdfs.py
-      - name: Verify generated PDFs
-        run: |
-          ls -lh public/golden-jubilee-high-resolution.pdf public/golden-jubilee-low-resolution.pdf
-          file public/golden-jubilee-high-resolution.pdf public/golden-jubilee-low-resolution.pdf
-      - name: Commit updated PDFs
+          ls -lh public/golden-jubilee-high-resolution.pdf
+          file public/golden-jubilee-high-resolution.pdf
+      - name: Commit updated PDF
         run: |
           git config user.name "Golden Jubilee Publisher"
           git config user.email "actions@github.com"
-          git add public/golden-jubilee-high-resolution.pdf public/golden-jubilee-low-resolution.pdf
+          git add public/golden-jubilee-high-resolution.pdf
           if git diff --cached --quiet; then
             echo "No PDF changes to commit."
           else

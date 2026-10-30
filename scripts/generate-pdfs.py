@@ -273,12 +273,6 @@ def build_pdf(path, low=False):
         Paragraph('Bijon Dutta',ParagraphStyle('edn2',fontName='BookSerif-Italic',fontSize=19,leading=24,textColor=cream,alignment=TA_CENTER))]
     doc.build(story,onFirstPage=bg_cover,onLaterPages=footer)
 
-high=OUT/'golden-jubilee-high-resolution.pdf'; low=OUT/'golden-jubilee-low-resolution.pdf'
+high=OUT/'golden-jubilee-high-resolution.pdf'
 build_pdf(high)
-# Recompress the high-resolution PDF with Ghostscript for a web-sharing version.
-cmd=['gs','-sDEVICE=pdfwrite','-dCompatibilityLevel=1.5','-dPDFSETTINGS=/ebook','-dNOPAUSE','-dBATCH','-dQUIET',f'-sOutputFile={low}',str(high)]
-if shutil.which('gs'): subprocess.run(cmd,check=True)
-else:
-    # Fallback when Ghostscript is unavailable: rebuild the sharing edition with downsampled photos.
-    LOW_MODE=True; build_pdf(low); print('Ghostscript not found; low-resolution PDF built with downsampled images')
-print('high',high.stat().st_size,'bytes','low',low.stat().st_size,'bytes')
+print('pdf',high.stat().st_size,'bytes')

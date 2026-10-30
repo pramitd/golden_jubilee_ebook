@@ -21,5 +21,4 @@ Published from `Final Compilation of GForm Inputs from Contributors - Master.doc
 - Photographs are still shown whole, without cropping.
 
 ## PDFs
-- Both downloadable editions were reprinted from the web reader, so they match the site.
-- High resolution and low resolution each have 124 A4 pages and include the new profiles, the corrected portraits, the darker type, and the footer email.
+- Only `golden-jubilee-high-resolution.pdf` is published (browser-printed from the reader).

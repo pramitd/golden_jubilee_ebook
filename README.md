@@ -31,23 +31,16 @@ npm run preview
 
 The production site is written to `dist/`.
 
-## Generate both PDF editions
+## Generate the PDF
 
-Install the Python requirements and Ghostscript, then run the PDF generator from the project root:
+From the project root:
 
 ```bash
-python3 -m pip install -r requirements.txt
-# macOS, if Ghostscript is not already installed:
-brew install ghostscript
+npm install
 npm run pdf:generate
 ```
 
-The command writes both files to `public/`:
-
-- `golden-jubilee-high-resolution.pdf` — A4 portrait print edition.
-- `golden-jubilee-low-resolution.pdf` — compressed sharing edition.
-
-The generator uses the structured publication data and photo assets, not screenshots of Word pages. It skips blank/placeholder-only story sections and retains supplied photos and captions.
+The command prints the web reader (`?pdf=1`) to `public/golden-jubilee-high-resolution.pdf` (A4 portrait).
 
 ## Deploy
 
