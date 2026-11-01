@@ -1,11 +1,15 @@
 node_modules/
-dist/
 .env
 .env.example
 .DS_Store
 tmp-low.txt
 scripts/
 .github/
+src/
+public/
+/index.html
+/package.json
+/package-lock.json
 *.py
 *.docx
 *.zip
