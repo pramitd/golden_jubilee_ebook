@@ -21,4 +21,5 @@ requirements.txt
 /public_data.json
 /golden-jubilee-high-resolution.pdf
 public/golden_jubilee_ebook.pdf
+dist/golden_jubilee_ebook.pdf
 public/assets/P-*/
