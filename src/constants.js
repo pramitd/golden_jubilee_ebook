@@ -1,0 +1,15 @@
+export const PAGE_W = 794;
+export const PAGE_H = 1123;
+export const INDEX_CHUNK = 26;
+export const MOBILE_MQ = '(max-width:768px)';
+export const DESKTOP_MQ = '(min-width:769px)';
+export const COARSE_MAX_WIDTH = 932;
+export const MOBILE_PINCH_MIN = 1;
+export const MOBILE_PINCH_MAX = 3;
+export const DESKTOP_ZOOM_MIN = 0.5;
+export const DESKTOP_ZOOM_MAX = 3;
+export const SWIPE_THRESHOLD = 48;
+export const PAGE_TURN_MS = 720;
+export const PDF_HREF = '/golden-jubilee-high-resolution.pdf?v=links';
+export const CONTACT_EMAIL = 'pramit.b.dutta@gmail.com';
+export const SITE_URL = 'https://boroai.in';

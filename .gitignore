@@ -3,23 +3,18 @@ node_modules/
 .env.example
 .DS_Store
 tmp-low.txt
-scripts/
-.github/
-src/
-public/
-/index.html
-/package.json
-/package-lock.json
-*.py
+_local_backup_*/
+_chrome_from_dist.css
 *.docx
 *.zip
 CHANGELOG*.md
 SOURCE_AUDIT.md
 README_DEMO.md
-sync-data.mjs
 requirements.txt
 /public_data.json
 /golden-jubilee-high-resolution.pdf
 public/golden_jubilee_ebook.pdf
+public/golden-jubilee-high-resolution.pdf
 dist/golden_jubilee_ebook.pdf
 public/assets/P-*/
+# High-res PDF stays in dist/ (already on main). Dev: copy into public/ or npm run pdf:generate.
